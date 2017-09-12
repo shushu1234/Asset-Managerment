@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+   <!--  <constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
+    <constant name="struts.devMode" value="true" />
+   <constant name="struts.custom.i18n.resources" value="messages"></constant>
+   <!-- 设置上传文件的总大小 最大100M-->
+   <constant name="struts.multipart.maxSize" value="104857600"></constant>
+   
+   <package name="basic" namespace="/" extends="struts-default">
+   		 
+	<interceptors>
+			<!-- 注册 -->
+			<interceptor name="login" class="com.shushu.web.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="login"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 设置默认拦截器栈 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		<!-- 如果未登陆 定义全局结果集 -->
+		<global-results>
+			<result name="login">/user/user-login.jsp</result>
+		</global-results>
+    	
+        <!--用户操作-->
+        <action name="user-*"  class="com.shushu.web.action.UserAction" method="{1}">
+        		<interceptor-ref name="defaultStack"></interceptor-ref>
+			 	<interceptor-ref name="token"></interceptor-ref> 
+        	 <result name="registINPUT">/user/user-regist.jsp</result>
+            <result name="registSUCCESS" type="redirect">/user/user-emailok.jsp</result>
+            <result name="invalid.token">/user/user-regist.jsp</result>
+        </action>
+        
+        <action name="user_*" class="com.shushu.web.action.UserAction" method="{1}">
+            <result name="loginINPUT" >/user/user-login.jsp</result>
+           <!--  <result name="input" >/user/user-login.jsp</result> -->
+            <result name="loginSUCCESS">/user/user-info.jsp</result>
+            <result name="registINPUT">/user/user-regist.jsp</result>
+            <result name="registSUCCESS" type="redirect">/user/user-emailok.jsp</result>
+            <result name="listSUCCESS">/user/user-list.jsp</result>
+            <result name="deleteSUCCESS" type="redirectAction">user_list</result>
+            <result name="viewSUCCESS">/user/user-info.jsp</result>
+            <result name="editviewSUCCESS">/user/user-edit.jsp</result>
+            <result name="editSUCCESS" type="redirectAction">user_login</result>
+            <result name="editINPUT">/user/user-edit.jsp</result>
+            <result name="indexSUCCESS">/user/user-info.jsp</result>
+            <result name="logoutSUCCESS">/user/user-login.jsp</result>
+            <result name="activeSUCCESS">/user/user-login.jsp</result>
+            <result name="recoverSUCCESS">/user/user-resetpwd.jsp</result>
+            <result name="recoveremailSUCCESS">/user/user-resetemailok.jsp</result>
+            <result name="recoversendSUCCESS">/user/user-recover.jsp</result>
+            <!-- 设置上传参数 -->
+			<interceptor-ref name="defaultStack">
+				<!-- 只允许上传 png和jpg文件 -->
+				<param name="fileUpload.allowedExtensions">.png,.jpg</param>
+				<!-- 当前form 上传文件大小限制 -->
+				<param name="fileUpload.maximumSize">2097152</param>
+			</interceptor-ref>
+			<!-- 配置自定义拦截器参数 -->
+			<interceptor-ref name="myStack">
+				<!-- 向拦截器传参数 -->
+				<param name="login.excludeMethods">user_login,user_index,user_regist,user_logout,user_active,user_recover</param>
+			</interceptor-ref>
+        </action>
+		
+		<!-- 文件操作 -->
+		<action name="file_*" class="com.shushu.web.action.FileAction" method="{1}">
+			<result name="uploadSUCCESS" type="redirectAction">user_view</result>
+			<result name="uploadINPUT">/file/file-upload.jsp</result>
+			<result name="listSUCCESS">/file/file-list.jsp</result>
+			<result name="downloadSUCCESS" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename=${downloadFilename}</param>
+			</result>
+			<result name="editviewSUCCESS">/file/file-edit.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">file_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">file_list</result>
+			<result name="detailSUCCESS">/file/file-detail.jsp</result>
+			<result name="uploadviewSUCCESS">/file/file-upload.jsp</result>
+			<interceptor-ref name="defaultStack">
+				<!-- 限制最大上传文件大小为20M -->
+				<param name="fileUpload.maximumSize">20971520</param>
+			</interceptor-ref>
+		</action>
+    	
+    	<!-- 类别操作 -->
+    	<action name="kind_*" class="com.shushu.web.action.KindAction" method="{1}">
+    		<result name="addSUCCESS" type="redirectAction">kind_list</result>
+    		<result name="listSUCCESS">/kind/kind-list.jsp</result>
+    		<result name="deleteSUCCESS" type="redirectAction">kind_list</result>
+    		<result name="detailSUCCESS">/kind/kind-detail.jsp</result>
+    		<result name="updateviewSUCCESS">/kind/kind-edit.jsp</result>
+    		<result name="updateSUCCESS" type="redirectAction">kind_list</result>
+    		<result name="addviewSUCCESS">/kind/kind-add.jsp</result>
+    	</action>
+    	
+    	<!-- 信息操作 -->
+    	<action name="message_*" class="com.shushu.web.action.MessageAction" method="{1}">
+    		<result name="detailSUCCESS">/message/message-detail.jsp</result>
+    		<result name="deleteSUCCESS">/message/message-inbox.jsp</result>
+    		<result name="listSUCCESS">/message/message-inbox.jsp</result>
+    		<result name="composeviewSUCCESS">/message/message-compose.jsp</result>
+    		<result name="sendviewSUCCESS">/message/message-send.jsp</result>
+    		<result name="deleteviewSUCCESS">/message/message-delete.jsp</result>
+    		<result name="inboxSUCCESS">/message/message-inbox.jsp</result>
+    	</action>
+    	<!-- 文章操作 -->
+    	<action name="article_*" class="com.shushu.web.action.ArticleAction" method="{1}">
+    		<result name="detailSUCCESS">/article/article-detail.jsp</result>
+    		<result name="listSUCCESS">/article/article-list.jsp</result>
+    		<result name="editviewSUCCESS">/article/article-edit.jsp</result>
+    		<result name="myviewSUCCESS">/article/article-my.jsp</result>
+    	</action>
+    </package>
+
+	<package name="myjson" namespace="/ajax" extends="json-default">
+		<action name="checkid" class="com.shushu.web.action.UserAction" method="checkid">
+			<result name="checkidSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checkemail" class="com.shushu.web.action.UserAction" method="checkemail">
+			<result name="checkemailSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="listuserfiles" class="com.shushu.web.action.FileAction" method="listuserfiles">
+			<result name="listuserfilesSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="topfile" class="com.shushu.web.action.FileAction" method="topfile">
+			<result name="topfileSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="messageadd" class="com.shushu.web.action.MessageAction" method="messageadd">
+			<result name="messageaddSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>	
+		<action name="useraddmsg" class="com.shushu.web.action.MessageAction" method="useraddmsg">
+			<result name="useraddmsgSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="leaflist" class="com.shushu.web.action.KindAction" method="leaflist">
+			<result name="leaflistSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="alllist" class="com.shushu.web.action.KindAction" method="alllist">
+			<result name="alllistSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checknewmsg" class="com.shushu.web.action.MessageAction" method="checknewmsg">
+			<result name="checknewmsgSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checkdelmsg" class="com.shushu.web.action.MessageAction" method="checkdelmsg">
+			<result name="checkdelmsgSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checksendmsg" class="com.shushu.web.action.MessageAction" method="checksendmsg">
+			<result name="checksendmsgSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="setadmin" class="com.shushu.web.action.UserAction" method="setadmin">
+			<result name="setadminSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="articleadd" class="com.shushu.web.action.ArticleAction" method="articleadd">
+			<result name="articleaddSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+			<result name="articleaddINPUT" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checknewarticle" class="com.shushu.web.action.ArticleAction" method="checknewarticle">
+			<result name="checknewarticleSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checkmyarticle" class="com.shushu.web.action.ArticleAction" method="checkmyarticle">
+			<result name="checkmyarticleSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="commentadd" class="com.shushu.web.action.CommentAction" method="commentadd">
+			<result name="commentaddSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="checkcomment" class="com.shushu.web.action.CommentAction" method="checkcomment">
+			<result name="checkcommentSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+	</package>
+</struts>

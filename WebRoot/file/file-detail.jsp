@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- Basic -->
     	<meta charset="UTF-8" />
 
-		<title>Widgets | Fire - Admin Template</title>
+		<title>资产详情</title>
 	   
 		<!-- Mobile Metas -->
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -261,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ol>						
 						</div>
 						<div class="pull-right">
-							<h2>文件详情</h2>
+							<h2>资产详情</h2>
 						</div>					
 					</div>
 					<!-- End Page Header -->
@@ -273,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="row">
 											<div class="col-xs-8 text-left bk-vcenter">
 												<div class="">
-													<h2 class="bk-margin-off">文件详情</h2>
+													<h2 class="bk-margin-off">资产详情</h2>
 												</div>
 											</div>
 											<div class="col-xs-4 bk-vcenter text-right">
@@ -287,23 +287,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%-- 											<s:text cssClass="badge bk-bg-info" ></s:text>
  --%>											<span class="badge bk-bg-info" id="fileid">
  													<s:property value="%{model.id}"/> </span>
-											文件id
+											资产id
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-primary"><s:property value="%{model.name}"/></span>
-											文件名称
+											附件名称
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-success">
 												<s:property value="%{model.kind}"/>
 											</span>
-											文件类型
+											资产类型
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-danger">
 												<s:property value="%{model.filesize}"/>&nbsp;Bytes
 											</span>
-											文件大小
+											资产大小
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-inverse-darker" id="userid"><s:property value="%{model.userid}"/></span>
@@ -311,50 +311,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-warning"><s:property value="%{model.authorname1}"/></span>
-											第一作者
+											品牌
 										</li>
 										<li class="list-group-item">
 										<span class="badge bk-bg-info"><s:property value="%{model.authorname2}"/></span>
-											第二作者
+											计量单位
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-primary"><s:property value="%{model.authorname3}"/></span>					
-											第三作者
+											保管人员
 										</li>
 										<li class="list-group-item">
-											<span class="badge bk-bg-success"><s:property value="%{model.authorname4}"/></span>					
-											第四作者
+											<span class="badge bk-bg-success"><s:property value="%{model.authorname4}"/></span>
+											存放地点
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-danger"><s:property value="%{model.authorname5}"/></span>
-											第五作者
+											所属部门
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-inverse-darker">
 												<s:if test="%{model.open==2}">
-	                                        		已开放下载
+	                                        		已审核
 	                                       		 </s:if>
 	                                       		 <s:else>
-	                                        		未开放
+	                                        		未审核
 	                                       		 </s:else>
 	                                        </span>
-											开放状态
+											审核状态
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-warning"><s:property value="%{model.uploaddate}"/></span>
-											上传时间
+											添加时间
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-info"><span id="ip"></span><span>:8080</span><span>${pageContext.request.contextPath}</span><s:property value="%{model.filepath}"/></span>
-											文件地址
+											附件地址
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-primary">
 												<s:if test="%{model.privatefile==1}">
-													公开文件
+													公开
 												</s:if>
 	                                       		 <s:else>
-													 个人文件
+													 隐藏
 												 </s:else>
 	                                        </span>
 											开放状态
@@ -456,7 +456,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="col-xs-12">
 							<div class="panel panel-default">
 								<div class="panel-heading bk-bg-white">
-									<h6><i class="fa fa-edit red"></i>文件审核</h6>
+									<h6><i class="fa fa-edit red"></i>资产审核</h6>
 									<div class="panel-actions">
 										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
 										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
@@ -561,7 +561,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //			alert(userid);
 //			alert(fileid);
 			$.post("${pageContext.request.contextPath}/ajax/messageadd.action",{
-			    "title":"文件审核通知",
+			    "title":"资产审核通知",
 			    "sender":loginuserid,
 				"receiver":userid,
 				"fileid":fileid,
@@ -569,10 +569,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"pass":pass
 			},function (data) {
 				if(data.addFlag){
-				    alert("文件审核成功");
+				    alert("资产审核成功");
 				    window.location.href="${pageContext.request.contextPath}/file_list.action";
 				}else{
-				    alert("文件审核失败");
+				    alert("资产审核失败");
 				}
             });
         })

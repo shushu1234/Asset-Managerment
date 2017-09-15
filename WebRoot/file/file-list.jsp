@@ -12,7 +12,7 @@
     <!-- Basic -->
     <meta charset="UTF-8"/>
 
-    <title>文件列表</title>
+    <title>资产列表</title>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -270,7 +270,7 @@
 
                 </div>
                 <div class="pull-right">
-                    <h2>文件列表</h2>
+                    <h2>资产列表</h2>
                 </div>
             </div>
             <!-- End Page Header -->
@@ -278,15 +278,15 @@
 
             <s:form namespace="/" action="file_list" theme="simple" method="post">
                 <div class="form-group col-md-4">
-                    <label class="col-md-3 control-label" for="id">文件id</label>
+                    <label class="col-md-3 control-label" for="id">资产id</label>
                     <div class="col-md-9">
-                        <input id="id" name="id" class="form-control" placeholder="请输入文件id">
+                        <input id="id" name="id" class="form-control" placeholder="请输入资产id">
                     </div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="col-md-3 control-label" for="name">文件名称</label>
+                    <label class="col-md-3 control-label" for="name">附件名称</label>
                     <div class="col-md-9">
-                        <s:textfield id="name" name="name" cssClass="form-control" placeholder="请输入文件名称"></s:textfield>
+                        <s:textfield id="name" name="name" cssClass="form-control" placeholder="请输入附件名称"></s:textfield>
                     </div>
                 </div>
                 <s:if test="%{#session.loginUser.role==1 }">
@@ -305,8 +305,8 @@
                             <%--                         <s:select list="#{'0':'未开放','1':'已开放下载' }" id="open" name="open" cssClass="form-control" size="1" headerKey="" headerValue="--选择状态--"></s:select>
                              --%> <select id="open" name="open" class="form-control" size="1">
                         <option selected value="">--选择状态--</option>
-                        <option value="1">未开放</option>
-                        <option value="2">已开放下载</option>
+                        <option value="1">未审核</option>
+                        <option value="2">已审核</option>
                     </select>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="panel panel-default bk-bg-white">
                         <div class="panel-heading bk-bg-white">
-                            <h6><i class="fa fa-user red"></i><span class="break"></span>文件列表</h6>
+                            <h6><i class="fa fa-user red"></i><span class="break"></span>资产列表</h6>
                             <div class="panel-actions">
                                 <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
                                 <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
@@ -341,13 +341,13 @@
                             <table class="table table-bordered table-striped" id="datatable-default">
                                 <thead>
                                 <tr>
-                                    <th>文件id</th>
-                                    <th>文件名称</th>
-                                    <th>文件类型</th>
-                                    <th>文件大小</th>
-                                    <th>上传用户id</th>
-                                    <th>上传日期</th>
-                                    <th>文件状态</th>
+                                    <th>资产id</th>
+                                    <th>附件名称</th>
+                                    <th>资产类型</th>
+                                    <th>附件大小</th>
+                                    <th>添加用户id</th>
+                                    <th>添加日期</th>
+                                    <th>资产状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -383,10 +383,10 @@
                                         </td>
                                         <td>
                                             <s:if test="%{#uploadFile.open==2}">
-                                                <span class="label label-success">已开放下载</span>
+                                                <span class="label label-success">已审核</span>
                                             </s:if>
                                             <s:else>
-                                                <span class="label label-danger">未开放</span>
+                                                <span class="label label-danger">未审核</span>
                                             </s:else>
                                         </td>
                                         <td>

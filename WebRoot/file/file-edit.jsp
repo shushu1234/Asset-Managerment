@@ -12,7 +12,7 @@
     <!-- Basic -->
     <meta charset="UTF-8"/>
 
-    <title>Wizard | Fire - Admin Template</title>
+    <title>资产信息修改</title>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -259,14 +259,10 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div class="pull-left">
-                    <ol class="breadcrumb visible-sm visible-md visible-lg">
-                        <li><a href="../index.jsp"><i class="icon fa fa-home"></i>Home</a></li>
-                        <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
-                        <li class="active"><i class="fa fa-tags"></i>Wizard</li>
-                    </ol>
+
                 </div>
                 <div class="pull-right">
-                    <h2>Wizard</h2>
+                <h2>资产信息修改</h2>
                 </div>
             </div>
             <!-- End Page Header -->
@@ -274,7 +270,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="panel panel-default form-wizard" id="w4">
                         <div class="panel-heading">
-                            <h6><i class="fa fa-tags bk-fg-warning"></i>用户文件修改</h6>
+                            <h6><i class="fa fa-tags bk-fg-warning"></i>资产信息修改</h6>
                             <div class="panel-actions">
                                 <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
                                 <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
@@ -287,16 +283,16 @@
                                 </div>
                                 <ul class="wizard-steps">
                                     <li class="active">
-                                        <a href="#w4-account" data-toggle="tab"><span>1</span>文件名称</a>
+                                        <a href="#w4-account" data-toggle="tab"><span>1</span>资产选择</a>
                                     </li>
                                     <li>
-                                        <a href="#w4-profile" data-toggle="tab"><span>2</span>文件作者</a>
+                                        <a href="#w4-profile" data-toggle="tab"><span>2</span>资产详情</a>
                                     </li>
                                     <li>
-                                        <a href="#w4-billing" data-toggle="tab"><span>3</span>文件分类</a>
+                                        <a href="#w4-billing" data-toggle="tab"><span>3</span>资产分类</a>
                                     </li>
                                     <li>
-                                        <a href="#w4-confirm" data-toggle="tab"><span>4</span>文件备注</a>
+                                        <a href="#w4-confirm" data-toggle="tab"><span>4</span>资产备注</a>
                                     </li>
                                 </ul>
                             </div>
@@ -309,7 +305,7 @@
                                 <div class="tab-content">
                                     <div id="w4-account" class="tab-pane active">
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="filename">文件名称</label>
+                                            <label class="col-md-3 control-label" for="filename">附件名称</label>
                                             <div class="col-md-9">
                                                 <!-- 	<input type="file" id="file-input" name="file-input" required> -->
                                                 <s:textfield name="name" cssClass="form-control" id="filename"
@@ -319,7 +315,7 @@
                                     </div>
                                     <div id="w4-profile" class="tab-pane">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-first-name">第1作者姓名</label>
+                                            <label class="col-sm-3 control-label" for="w4-first-name">品牌</label>
                                             <div class="col-sm-9">
                                                 <!-- <input type="text" class="form-control" name="first-name" id="w4-first-name" required> -->
                                                 <s:textfield cssClass="form-control required" name="authorname1"
@@ -328,7 +324,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">第2作者姓名</label>
+                                            <label class="col-sm-3 control-label" for="w4-last-name">计量单位</label>
                                             <div class="col-sm-9">
                                                 <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
                                                 <s:textfield cssClass="form-control" name="authorname2"
@@ -337,7 +333,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">第3作者姓名</label>
+                                            <label class="col-sm-3 control-label" for="w4-last-name">保管人员</label>
                                             <div class="col-sm-9">
                                                 <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
                                                 <s:textfield cssClass="form-control" name="authorname3"
@@ -346,7 +342,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">第4作者姓名</label>
+                                            <label class="col-sm-3 control-label" for="w4-last-name">存放地点</label>
                                             <div class="col-sm-9">
                                                 <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
                                                 <s:textfield cssClass="form-control" name="authorname4"
@@ -355,7 +351,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">第5作者姓名</label>
+                                            <label class="col-sm-3 control-label" for="w4-last-name">所属部门</label>
                                             <div class="col-sm-9">
                                                 <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
                                                 <s:textfield cssClass="form-control" name="authorname5"
@@ -381,7 +377,7 @@
                                             <div class="col-md-9">
                                                 <s:textarea id="textarea-input" name="remark" rows="9"
                                                             cssClass="form-control"
-                                                            placeholder="请输入文件的备注信息，有助于管理员的审核..."
+                                                            placeholder="请输入其他的备注信息，有助于管理员的审核..."
                                                             value="%{model.remark}"></s:textarea>
                                             </div>
                                         </div>

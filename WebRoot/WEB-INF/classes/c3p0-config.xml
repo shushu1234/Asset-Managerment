@@ -6,6 +6,6 @@
 		 <property name="password"></property> 
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 	<!-- 	注意设置连接编码 -->
-		<property name="jdbcUrl">jdbc:mysql:///filedata?characterEncoding=utf-8</property>
+		<property name="jdbcUrl">jdbc:mysql:///asset?characterEncoding=utf-8</property>
 	</default-config> <!-- This app is massive! -->
 </c3p0-config> 

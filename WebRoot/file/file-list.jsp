@@ -169,11 +169,11 @@
                                     class="text"> 个人信息</span></a></li>
                             <li><a href="${pageContext.request.contextPath }/file_list.action">
                                 <i class="fa  fa-th-large" aria-hidden="true"></i><span
-                                    class="text">文件列表</span></a></li>
+                                    class="text">资产列表</span></a></li>
 
                             <li><a href="${pageContext.request.contextPath }/article_list.action">
                                 <i class="fa   fa-file-text" aria-hidden="true"></i>
-                                <span class="text"> 文章列表</span></a>
+                                <span class="text"> 公告列表</span></a>
                             </li>
 
                             <li>
@@ -184,7 +184,7 @@
                             <li>
 
                                 <a href="${pageContext.request.contextPath }/file_uploadview.action">
-                                    <i class="fa  fa-cloud-upload" aria-hidden="true"></i><span>文件上传</span>
+                                    <i class="fa  fa-cloud-upload" aria-hidden="true"></i><span>资产添加</span>
                                 </a>
                             </li>
                             <li class="nav-parent">
@@ -443,6 +443,7 @@
 <script src="${pageContext.request.contextPath}/assets/plugins/select2/select2.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables/media/js/jquery.dataTables.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/DT_bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables-bs3/js/datatables.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/sparkline/js/jquery.sparkline.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>

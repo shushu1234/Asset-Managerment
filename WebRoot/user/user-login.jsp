@@ -108,8 +108,8 @@
                                         </div>
                                         <s:fielderror fieldName="id"
                                                       cssStyle="margin-top:5px;color: #ff0714;list-style: none;"></s:fielderror>
-                                        <div id="useridinfo1" style="color: red;display: none;">该账号不存在,请检查或去注册</div>
-                                        <div id="useridinfo2" style="color: red;display: none;">该邮箱不存在,请检查或去注册</div>
+<!--                                         <div id="useridinfo1" style="color: red;display: none;">该账号不存在,请检查或去注册</div>
+ -->                                        <div id="useridinfo2" style="color: red;display: none;">该邮箱不存在,请检查或去注册</div>
                                     </div>
                                     <div class="form-group">
                                         <label> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码 </label>

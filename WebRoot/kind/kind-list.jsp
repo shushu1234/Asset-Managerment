@@ -150,16 +150,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</div>
 	<li><a href="${pageContext.request.contextPath }/user_view.action">
-	<i class="fa  fa-user" aria-hidden="true"></i><span
+	<i class="fa fa-user" aria-hidden="true"></i><span
 	class="text"> 个人信息</span></a></li>
 	<li><a href="${pageContext.request.contextPath }/file_list.action">
-	<i class="fa  fa-th-large" aria-hidden="true"></i><span
+	<i class="fa fa-th-large" aria-hidden="true"></i><span
 	class="text">资产列表</span></a></li>
-
-	<li><a href="${pageContext.request.contextPath }/article_list.action">
-	<i class="fa   fa-file-text" aria-hidden="true"></i>
-	<span class="text"> 公告列表</span></a>
-	</li>
 
 	<li>
 	<a href="${pageContext.request.contextPath }/message_inbox.action">
@@ -169,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<li>
 
 	<a href="${pageContext.request.contextPath }/file_uploadview.action">
-	<i class="fa  fa-cloud-upload" aria-hidden="true"></i><span>资产添加</span>
+	<i class="fa fa-cloud-upload" aria-hidden="true"></i><span>资产添加</span>
 	</a>
 	</li>
 	<li class="nav-parent">
@@ -179,10 +174,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<ul class="nav nav-children">
 	<li><a href="${pageContext.request.contextPath}/user_recoversend.action"><span
 	class="text"> 密码重置</span></a></li>
-	<li><s:a  action="user_editview" namespace="/">
-	<s:param name="id" value="%{#session.loginUser.id}"></s:param>
-	<span class="text"> 修改个人信息</span>
-</s:a>
+	<li>
+	<s:a action="user_editview" namespace="/">
+		<s:param name="id" value="%{#session.loginUser.id}"></s:param>
+		<span class="text"> 修改个人信息</span>
+	</s:a>
 	</li>
 	<li><a href="${pageContext.request.contextPath }/user_list.action"><span
 	class="text">用户查询</span></a></li>
@@ -190,16 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</li>
 	<li class="nav-parent">
 	<a>
-	<i class="fa fa-book" aria-hidden="true"></i><span>文章中心</span>
-	</a>
-	<ul class="nav nav-children">
-	<li><a href="${pageContext.request.contextPath }/article_editview.action"><span class="text"> 撰写文章</span></a></li>
-	<li><a href="${pageContext.request.contextPath }/article_myview.action"><span class="text"> 个人文章</span></a></li>
-	</ul>
-	</li>
-	<li class="nav-parent">
-	<a>
-	<i class="fa  fa-envelope-o" aria-hidden="true"></i><span>信息中心</span>
+	<i class="fa fa-envelope-o" aria-hidden="true"></i><span>信息中心</span>
 	</a>
 	<ul class="nav nav-children">
 	<li>
@@ -224,10 +211,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</li>
 	</ul>
 	</li>
+	<li class="nav-parent">
+	<a>
+	<i class="fa fa-list-alt" aria-hidden="true"></i><span>部门管理</span>
+	</a>
+	<ul class="nav nav-children">
+	<li><a href="${pageContext.request.contextPath }/department_addview.action"><span
+	class="text"> 添加根部门</span></a></li>
+	<li><a href="${pageContext.request.contextPath }/department_list.action"><span>部门列表</span></a>
+	</li>
+	</ul>
+	</li>
 	<li>
 
 	<a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-	<i class="fa  fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+	<i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
 	</a>
 	</li>
 	</ul>

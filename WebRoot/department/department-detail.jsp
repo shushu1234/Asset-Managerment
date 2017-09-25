@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@taglib  uri="/struts-tags" prefix="s"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,10 +12,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- Basic -->
     	<meta charset="UTF-8" />
 
-		<title>资产录入</title>
-	 
+		<title>部门详情</title>
+	   
 		<!-- Mobile Metas -->
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
 
 		<!-- Favicon and touch icons -->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" type="image/x-icon" />
@@ -36,20 +37,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="${pageContext.request.contextPath}/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/assets/vendor/css/pace.preloader.css" rel="stylesheet" />
 		
-		<!-- Plugins CSS-->
-		<link href="${pageContext.request.contextPath}/assets/plugins/bootkit/css/bootkit.css" rel="stylesheet" />
+		<!-- Plugins CSS-->	
+		<link href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/mCustomScrollbar.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/assets/plugins/bootkit/css/bootkit.css" rel="stylesheet" />			
+		<link href="${pageContext.request.contextPath}/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/assets/plugins/magnific-popup/css/magnific-popup.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/assets/plugins/pnotify/css/pnotify.custom.css" rel="stylesheet" />
-		
-		<!-- Theme CSS -->
+
+	<!-- Theme CSS -->
 		<link href="${pageContext.request.contextPath}/assets/css/jquery.mmenu.css" rel="stylesheet" />
 		
 		<!-- Page CSS -->		
 		<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/assets/css/add-ons.min.css" rel="stylesheet" />
-		
-		<!-- end: CSS file-->	
-	    
-		
+
+		<!-- end: CSS file-->
 		<!-- Head Libs -->
 		<script src="${pageContext.request.contextPath}/assets/plugins/modernizr/js/modernizr.js"></script>
 		
@@ -58,8 +60,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->		
-		
+		<![endif]-->
+
 	</head>
 	
 	<body>
@@ -249,156 +251,119 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- Page Header -->
 					<div class="page-header">
 						<div class="pull-left">
-
+												
 						</div>
 						<div class="pull-right">
-							<h2>资产录入</h2>
+							<h2>部门详情</h2>
 						</div>					
 					</div>
 					<!-- End Page Header -->
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="panel panel-default form-wizard" id="w4">
-								<div class="panel-heading">
-									<h6><i class="fa fa-tags bk-fg-warning"></i>用户资产录入</h6>
-									<div class="panel-actions">
-										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
-										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-									</div>
-								</div>
+						<div class="col-md-12">
+							<div class="panel bk-widget bk-border-off">
 								<div class="panel-body">
-									<div class="wizard-progress wizard-progress-lg">
-										<div class="steps-progress">
-											<div class="progress-indicator"></div>
+									<div class="bk-bg-white text-center bk-padding-top-15 bk-padding-bottom-15">
+										<div class="row">
+											<div class="col-xs-8 text-left bk-vcenter">
+												<div class="">
+													<h2 class="bk-margin-off">部门详情</h2>
+												</div>
+											</div>
+											<div class="col-xs-4 bk-vcenter text-right">
+												<i class="fa fa-file fa-4x"></i>
+											</div>
 										</div>
-										<ul class="wizard-steps">
-											<li class="active">
-												<a href="#w4-account" data-toggle="tab"><span>1</span>资产选择</a>
-											</li>
-											<li>
-												<a href="#w4-profile" data-toggle="tab"><span>2</span>资产详情</a>
-											</li>
-											<li>
-												<a href="#w4-billing" data-toggle="tab"><span>3</span>资产分类</a>
-											</li>
-											<li>
-												<a href="#w4-confirm" data-toggle="tab"><span>4</span>资产备注</a>
-											</li>
-										</ul>
 									</div>
-									<%-- <s:actionerror cssStyle="list-style:none;" cssClass="alert alert-danger"/> --%>
-									<s:fielderror cssStyle="list-style:none;" cssClass="alert alert-danger"></s:fielderror>
-									<s:form cssClass="form-horizontal" action="file_upload" namespace="/" theme="simple" method="post"  novalidate="novalidate" enctype="multipart/form-data" name="uploadform">
-										
-										<s:hidden name="userid" value="%{#session.loginUser.name}"></s:hidden>
-										<div class="tab-content">
-											<div id="w4-account" class="tab-pane active">
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="file-input">附件文件</label>
-													<div class="col-md-9">
-													<!-- 	<input type="file" id="file-input" name="file-input" required> -->
-														<s:file id="file-input" name="upload" cssClass="required"></s:file>
-													</div>
-												</div>
-											</div>
-											<div id="w4-profile" class="tab-pane">
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-first-name">品牌</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="first-name" id="w4-first-name" required> -->
-														<s:textfield cssClass="form-control required" name="authorname1" id="w4-first-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">计量单位</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname2" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">保管人员</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname3" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">存放地点</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname4" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">所属部门</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname5" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-											</div>
-											<div id="w4-billing" class="tab-pane">
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="select">选择分类</label>
-													<div id="kindlist" class="col-md-9">
-														<%--<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}" cssClass="form-control required" id="select" name="kindid" size="1" headerKey="" headerValue="--选择分类--"></s:select>--%>
-															<%--<select id="select" name="kindid" class="form-control required" size="1">--%>
-																<%--<option value="0">请选择类别</option>--%>
-																<%--<option value="1">Option #1</option>--%>
-																<%--<option value="2">Option #2</option>--%>
-																<%--<option value="3">Option #3</option>--%>
-															<%--</select>--%>
-													</div>
-												</div>
-											</div>
-											<div id="w4-confirm" class="tab-pane">
+								
+									<ul class="list-group">
+										<li class="list-group-item">
+<%-- 											<s:text cssClass="badge bk-bg-info" ></s:text>
+ --%>											<span class="badge bk-bg-info" >
+ 													<s:property value="%{model.id}"/> </span>
+											部门id
+										</li>
+										<li class="list-group-item">
+											<span class="badge bk-bg-primary"><s:property value="%{model.name}"/></span>
+											部门名称
+										</li>
+										<li class="list-group-item">
+											<span class="badge bk-bg-inverse-darker"><s:property value="%{model.parentid}"/></span>
+											父级id
+										</li>
+										<li class="list-group-item">
+											<span class="badge bk-bg-warning"><s:property value="%{model.grade}"/></span>
+											层级
+										</li>
+										<li class="list-group-item">
+										<span class="badge bk-bg-info">
+											<s:if test="%{model.leaf==2}">
+												否
+											</s:if>
+											<s:else>
+												是
+											</s:else>
+										</span>
+											叶子节点
+										</li>										
+										<li class="list-group-item">
 
-												<div class="form-group">
-													<label class="col-md-3 control-label">是否公开</label>
-													<div class="col-md-9">
-														<div class="radio-custom radio-inline">
-															<input type="radio" id="inline-radio1" name="privatefile" value="1" checked="checked">
-															<label for="inline-radio1"> 公开</label>
-														</div>
-														<div class="radio-custom radio-inline">
-															<input type="radio" id="inline-radio2" name="privatefile" value="2">
-															<label for="inline-radio2"> 隐藏	</label>
-														</div>
-													</div>
-												</div>
-
-
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="textarea-input">资产备注</label>
-													<div class="col-md-9">
-														<s:textarea id="textarea-input" name="remark" rows="9" cssClass="form-control" placeholder="请输入其他的备注信息，有助于管理员的审核..." ></s:textarea>
-													</div>
-												</div>
-											<!-- 	<input type="submit" value="提交" /> -->
+											<span class="badge bk-bg-info">
+											<a class=" popup-with-zoom-anim btn btn-default" href="#small-dialog" style="background-color:#2dc9b7;font-size:10px;padding:0px;color:#fff;border-bottom:0px">点击查看详情</a>
+											</span>
+											<div id="small-dialog" class="dialog dialog-sm zoom-anim-dialog mfp-hide">
+											<h1>部门描述</h1>
+											<p><s:property value="%{model.descr}"/></p>
 											</div>
-											<div class="panel-footer bk-bg-very-light-gray bk-radius">
-												<ul class="pager bk-margin-off">
-													<li class="previous disabled">
-														<a><i class="fa fa-angle-left"></i> 上一页</a>
-													</li>
-													<li class="finish hidden pull-right">
-														<a href="#" onclick="uploadform.submit();">提交</a>
-													</li>
-													<li class="next">
-														<a>下一页 <i class="fa fa-angle-right"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-					
-									</s:form>
-								</div>								
+											部门描述
+										</li>
+									</ul>
+									<div>   
+                                           <%--  <s:a cssClass="btn btn-danger" action="file_delete" namespace="/">
+                                            	<s:param name="id" value="%{model.id}"></s:param>
+                                                 <i class="fa fa-trash-o "></i>
+                                            </s:a> --%>
+                                             <s:a cssClass="btn btn-info" action="department_updateview" namespace="/">
+                                            	<s:param name="id" value="id"></s:param>
+                                                <i class="fa fa-edit "></i>
+                                            </s:a>
+                                             <a id="del" class="modal-basic btn btn-danger" href="#modalIcon" data-delid=%{model.id}><i class="fa fa-trash-o "></i></a>
+                                        <div id="modalIcon" class="modal-block modal-block-primary mfp-hide">
+                                        <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                        <h2 class="panel-title">请确认:</h2>
+                                        </div>
+                                        <div class="panel-body bk-noradius">
+                                        <div class="modal-wrapper">
+                                        <div class="modal-icon">
+                                        <i class="fa fa-question-circle"></i>
+                                        </div>
+                                        <div class="modal-text">
+                                        <p> 你确认要删除&nbsp;<span style="color:red;"
+	><s:property value="%{model.name}"></s:property></span>&nbsp;吗?</p>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                        <div class="row">
+                                        <div class="col-md-12 text-right">
+                                        <s:a action="department_delete" namespace="/" >
+                                                 <s:param name="id" value="%{model.id}"></s:param>
+                                                 <button class="btn btn-info modal-confirm1" >确认</button>
+                                        </s:a>
+                                        <button class="btn btn-default modal-dismiss">取消</button>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                      </div>
+								</div>
 							</div>
-						</div>
+					</div>
 					</div>
 				</div>
-				<!-- End Main Page -->	
+				<!-- End Main Page -->
+
 
 			</div>
 		</div><!--/container-->
@@ -418,56 +383,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath}/assets/vendor/js/pace.min.js"></script>
 		
 		<!-- Plugins JS-->
-		<script src="${pageContext.request.contextPath}/assets/plugins/autosize/jquery.autosize.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/js/jquery.validate.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/wizard/js/jquery.bootstrap.wizard.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootkit/js/bootkit.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot/js/jquery.flot.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot/js/jquery.flot.pie.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot/js/jquery.flot.stack.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot/js/jquery.flot.time.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/flot-tooltip/js/jquery.flot.tooltip.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/sparkline/js/jquery.sparkline.min.js"></script>
-		
-		<!-- Theme JS -->		
+		<script src="${pageContext.request.contextPath}/assets/plugins/moment/js/moment.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/magnific-popup/js/magnific-popup.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>
+
+	<!-- Theme JS -->
 		<script src="${pageContext.request.contextPath}/assets/js/jquery.mmenu.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 		
 		<!-- Pages JS -->
-		<script src="${pageContext.request.contextPath}/assets/js/pages/form-wizard.js"></script>
-		
-		<!-- end: JavaScript-->
+		<script src="${pageContext.request.contextPath}/assets/js/pages/widgets.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/pages/ui-lightbox.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/pages/ui-modals.js"></script>
 
-		<script type="text/javascript">
-            function kindlist() {
-                var kindlist=$("#kindlist");
-                $.post("${pageContext.request.contextPath}/ajax/alllist.action",function (data) {
-                    var str="<select id=\"select\" name=\"kindid\" class=\"form-control required\" size=\"1\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"0\">--选择类别--</option>";
-                    var kind=data.alllist;
-                    if (kind.length==0){
-                        alert("对不起，你暂时还未添加任何类别，请先添加类别再添加资产:)");
-                        window.location.href="${pageContext.request.contextPath}/kind_addview.action";
-					}
-                    $.each(kind,function (n,kind) {
-                        if (kind.leaf==2){
-                            str+="</optgroup>";
-                            str+="<optgroup label=\"" +
-                                kind.name +
-                                "\">"
-                        }
-                        else {
-                            str+="<option value=\"" +
-                                kind.id +
-                                "\">" +
-                                kind.name +
-                                "</option>"
-                        }
-                    })
-                    str+="</optgroup>";
-                    str+="</select>";
-                    str.slice(10);
-                    kindlist.append(str);
-                })
-            }
-            kindlist();
-		</script>
+	<!-- end: JavaScript-->
+	<script type="text/javascript">
+	$(document).on('click', '#modal-confirm1', function (e) {
+		e.preventDefault();
+		$.magnificPopup.close();
+		var delid=$("#del").data('delid');
+		alert(delid);
+		new PNotify({
+			title: 'Success!',
+			text: 'Modal Confirm Message.',
+			type: 'success'
+		});
+	});
 
+	</script>
 	</body>
 	
 </html>

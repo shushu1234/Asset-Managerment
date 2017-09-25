@@ -102,6 +102,17 @@
     		<result name="addviewSUCCESS">/kind/kind-add.jsp</result>
     	</action>
     	
+    	<!-- 部门操作 -->
+    	<action name="department_*" class="com.shushu.web.action.DepartmentAction" method="{1}">
+    		<result name="addSUCCESS" type="redirectAction">department_list</result>
+    		<result name="listSUCCESS">/department/department-list.jsp</result>
+    		<result name="deleteSUCCESS" type="redirectAction">department_list</result>
+    		<result name="detailSUCCESS">/department/department-detail.jsp</result>
+    		<result name="updateviewSUCCESS">/department/department-edit.jsp</result>
+    		<result name="updateSUCCESS" type="redirectAction">department_list</result>
+    		<result name="addviewSUCCESS">/department/department-add.jsp</result>
+    	</action>
+    	
     	<!-- 信息操作 -->
     	<action name="message_*" class="com.shushu.web.action.MessageAction" method="{1}">
     		<result name="detailSUCCESS">/message/message-detail.jsp</result>
@@ -173,6 +184,13 @@
 		</action>
 		<action name="alllist" class="com.shushu.web.action.KindAction" method="alllist">
 			<result name="alllistSUCCESS" type="json">
+				<param name="root">
+					action
+				</param>
+			</result>
+		</action>
+		<action name="departmentlist" class="com.shushu.web.action.DepartmentAction" method="departmentlist">
+			<result name="departmentlistSUCCESS" type="json">
 				<param name="root">
 					action
 				</param>

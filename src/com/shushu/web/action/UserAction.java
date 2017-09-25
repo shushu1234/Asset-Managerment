@@ -112,8 +112,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			MDC.put("userid", loginUser.getId());
 			log.info(loginUser.getId() + "登录");
 			ValueStack valueStack = ActionContext.getContext().getValueStack();
-			ServletActionContext.getRequest().getSession()
-					.setAttribute("loginUser", loginUser);
+			ServletActionContext.getRequest().getSession().setAttribute("loginUser", loginUser);
 			valueStack.set("op", "login");
 			return "loginSUCCESS";
 		}
@@ -129,19 +128,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String regist() throws IOException {
 		// System.out.println(user.toString());
 		// 上传头像
-		String testid = String.valueOf(new RandomUtils().getRandomNum(10000000,
-				99999999));
+		String testid = String.valueOf(new RandomUtils().getRandomNum(10000000, 99999999));
 		while (userService.checkid(testid)) {
-			testid = String.valueOf(new RandomUtils().getRandomNum(10000000,
-					99999999));
+			testid = String.valueOf(new RandomUtils().getRandomNum(10000000, 99999999));
 		}
 		user.setId(testid);
 		if (upload != null) {
 			String avatarName = UUID.randomUUID().toString();
-			String path = "user/avatars/" + avatarName + "."
-					+ uploadFileName.split("\\.")[1];
-			File destFile = new File(ServletActionContext.getServletContext()
-					.getRealPath(path));
+			String path = "user/avatars/" + avatarName + "." + uploadFileName.split("\\.")[1];
+			File destFile = new File(ServletActionContext.getServletContext().getRealPath(path));
 			FileUtils.copyFile(upload, destFile);
 			user.setAvatarpath(path);
 		} else {
@@ -151,15 +146,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		String activecode = UUID.randomUUID().toString().replace("-", "")
 				+ UUID.randomUUID().toString().replace("-", "");
 		user.setActivecode(activecode);
-		String emailcontent = MailTemplate.registtmp(user.getName(),
-				user.getActivecode());
+		String emailcontent = MailTemplate.registtmp(user.getName(), user.getActivecode());
 		MailUtils.sendMail(user.getEmail(), "Fileware用户注册确认", emailcontent);
 		log.info(user.getId() + "注册");
+		System.out.println(user);
 		userService.regist(user);
 		ValueStack valueStack = ActionContext.getContext().getValueStack();
 		valueStack.set("userRole", user.getRole());
-		ServletActionContext.getRequest().getSession()
-				.setAttribute("loginUser", user);
+		ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 		return "registSUCCESS";
 	}
 
@@ -181,8 +175,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String list() {
 		// 获得查询结果,放到值栈里面
 		// System.out.println(user.toString());
-		User user1 = (User) ServletActionContext.getRequest().getSession()
-				.getAttribute("loginUser");
+		User user1 = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		if (user1.getRole() == 0) {
 			user.setDefunct("N");
 			users = userService.list(user);
@@ -201,10 +194,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String delete() {
 		// 删除头像
 		user = userService.findById(user.getId());
-		if (!user.getAvatarpath().equals(
-				"user/avatars/f4d5575a-d5aa-4cdd-9898-fcd6aee28c2f.png")) {
-			File file = new File(ServletActionContext.getServletContext()
-					.getRealPath(user.getAvatarpath()));
+		if (!user.getAvatarpath().equals("user/avatars/f4d5575a-d5aa-4cdd-9898-fcd6aee28c2f.png")) {
+			File file = new File(ServletActionContext.getServletContext().getRealPath(user.getAvatarpath()));
 			file.delete();
 		}
 		userService.delete(user);
@@ -246,28 +237,25 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if (upload == null) {
 			// 用户没有上传新头像
 			// System.out.println("not " + user.toString());
+			System.out.println(user);
 			userService.edit(user, false);
 		} else {
 			// 用户上传了新头像
 			// 1.上传新头像
 			String avatarName = UUID.randomUUID().toString();
-			String path = "user/avatars/" + avatarName + "."
-					+ uploadFileName.split("\\.")[1];
-			File destFile = new File(ServletActionContext.getServletContext()
-					.getRealPath(path));
+			String path = "user/avatars/" + avatarName + "." + uploadFileName.split("\\.")[1];
+			File destFile = new File(ServletActionContext.getServletContext().getRealPath(path));
 			FileUtils.copyFile(upload, destFile);
 			user.setAvatarpath(path);
 			// 2.删除旧头像
 			User oldUser = userService.findById(user.getId());
-			if (!oldUser.getAvatarpath().equals(
-					"user/avatars/f4d5575a-d5aa-4cdd-9898-fcd6aee28c2f.png")) {
-				File oldFile = new File(ServletActionContext
-						.getServletContext().getRealPath(
-								oldUser.getAvatarpath()));
+			if (!oldUser.getAvatarpath().equals("user/avatars/f4d5575a-d5aa-4cdd-9898-fcd6aee28c2f.png")) {
+				File oldFile = new File(ServletActionContext.getServletContext().getRealPath(oldUser.getAvatarpath()));
 				oldFile.delete();
 			}
 			// System.out.println("yes " + user.toString());
 			log.info(user.getId() + "修改个人信息");
+			System.out.println(user);
 			userService.edit(user, true);
 		}
 		return "editSUCCESS";
@@ -320,8 +308,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if (user.getEmail() != null) {
 			List<User> users = userService.list(user);
 			user = users.get(0);
-			String emailcontent = MailTemplate.resetpwdtmp(user.getName(),
-					user.getId());
+			String emailcontent = MailTemplate.resetpwdtmp(user.getName(), user.getId());
 			MailUtils.sendMail(user.getEmail(), "Fileware用户密码重置", emailcontent);
 			return "recoveremailSUCCESS";
 		} else if (user.getPwd() != null) {
@@ -338,10 +325,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 	}
 
+	/**
+	 * 更改功能为启用用户
+	 * 
+	 * @return
+	 */
 	public String setadmin() {
 		user = userService.findById(userid);
-		user.setRole(1);
-		userService.edit(user, false);
+		user.setDefunct("N");
+		userService.setadmin(user);
 		setadmin = true;
 		return "setadminSUCCESS";
 	}

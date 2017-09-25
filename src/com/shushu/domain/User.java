@@ -13,6 +13,8 @@ public class User {
 	private int kindid;// 类别的父id
 	private int state;// 激活状态 1-未激活 2-激活
 	private String activecode;// 激活码
+	private String department;// 部门
+	private String job;// 职称
 
 	public int getState() {
 		return state;
@@ -110,13 +112,28 @@ public class User {
 		this.avatarpath = avatarpath;
 	}
 
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", pwd=" + pwd
-				+ ", gender=" + gender + ", tel=" + tel + ", email=" + email
-				+ ", role=" + role + ", defunct=" + defunct + ", avatarpath="
-				+ avatarpath + ", kindid=" + kindid + ", state=" + state
-				+ ", activecode=" + activecode + "]";
+		return "User [id=" + id + ", name=" + name + ", pwd=" + pwd + ", gender=" + gender + ", tel=" + tel + ", email="
+				+ email + ", role=" + role + ", defunct=" + defunct + ", avatarpath=" + avatarpath + ", kindid="
+				+ kindid + ", state=" + state + ", activecode=" + activecode + ", department=" + department + ", job="
+				+ job + "]";
 	}
 
 }

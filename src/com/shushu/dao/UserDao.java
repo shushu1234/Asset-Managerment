@@ -30,8 +30,7 @@ public class UserDao {
 			param = parmas;
 		}
 		try {
-			User loginUser = queryRunner.query(sql, new BeanHandler<User>(
-					User.class), param);
+			User loginUser = queryRunner.query(sql, new BeanHandler<User>(User.class), param);
 			return loginUser;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,9 +43,8 @@ public class UserDao {
 	 */
 	public void regist(User user) {
 		String sql = "insert into user(id,name,pwd,gender,tel,email,role,defunct,avatarpath,activecode) values(?,?,?,?,?,?,?,?,?,?)";
-		Object[] params = { user.getId(), user.getName(), user.getPwd(),
-				user.getGender(), user.getTel(), user.getEmail(), 0, "N",
-				user.getAvatarpath(), user.getActivecode() };
+		Object[] params = { user.getId(), user.getName(), user.getPwd(), user.getGender(), user.getTel(),
+				user.getEmail(), 0, "Y", user.getAvatarpath(), user.getActivecode() };
 		try {
 			queryRunner.update(sql, params);
 		} catch (SQLException e) {
@@ -85,8 +83,7 @@ public class UserDao {
 			params.add(user.getDefunct());
 		}
 		try {
-			List<User> users = queryRunner.query(sql,
-					new BeanListHandler<User>(User.class), params.toArray());
+			List<User> users = queryRunner.query(sql, new BeanListHandler<User>(User.class), params.toArray());
 			return users;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -97,7 +94,7 @@ public class UserDao {
 	}
 
 	public void delete(User user) {
-		String sql = "delete from user where id = ?";
+		String sql = "update user set defunct = 'Y' where id = ?";
 		try {
 			queryRunner.update(sql, user.getId());
 		} catch (SQLException e) {
@@ -110,8 +107,7 @@ public class UserDao {
 	public User findById(String id) {
 		String sql = "select * from user where id = ?";
 		try {
-			User user = queryRunner.query(sql,
-					new BeanHandler<User>(User.class), id);
+			User user = queryRunner.query(sql, new BeanHandler<User>(User.class), id);
 			return user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,12 +117,20 @@ public class UserDao {
 	}
 
 	public void update(User user, boolean isEditUpload) {
+		String departmentName = null;
+		String jobName = null;
+		if (user.getDepartment() == null) {
+			User tempuser = findById(user.getId());
+			departmentName = tempuser.getDepartment();
+			jobName = tempuser.getJob();
+		} else {
+			departmentName = (new DepartmentDao().findById(Integer.parseInt(user.getDepartment()))).getName();
+		}
 		if (isEditUpload) {
 			// 上传了头像
-			String sql = "update user set name = ?, gender = ?, tel = ?, email = ?, avatarpath = ? where id = ?";
-			Object[] params = { user.getName(), user.getGender(),
-					user.getTel(), user.getEmail(), user.getAvatarpath(),
-					user.getId() };
+			String sql = "update user set name = ?, gender = ?, tel = ?, email = ?, avatarpath = ?,department = ?, job = ? where id = ?";
+			Object[] params = { user.getName(), user.getGender(), user.getTel(), user.getEmail(), user.getAvatarpath(),
+					departmentName, jobName, user.getId() };
 			String sql1 = "update article set userpath = ? where userid = ?";
 			String sql2 = "update comment set avatarpath = ? where userid = ?";
 			String sql3 = "update message set senderpath = ? where sender = ?";
@@ -142,11 +146,9 @@ public class UserDao {
 			}
 		} else {
 			// 没有上传头像
-			String sql = "update user set name = ?,pwd=?, gender = ?, tel = ?, email = ?, state= ?,activecode=? ,role=? where id = ?";
-			Object[] params = { user.getName(), user.getPwd(),
-					user.getGender(), user.getTel(), user.getEmail(),
-					user.getState(), user.getActivecode(), user.getRole(),
-					user.getId() };
+			String sql = "update user set name = ?,pwd=?, gender = ?, tel = ?, email = ?, state= ?,activecode=? ,department = ?, job = ?where id = ?";
+			Object[] params = { user.getName(), user.getPwd(), user.getGender(), user.getTel(), user.getEmail(),
+					user.getState(), user.getActivecode(), departmentName, jobName, user.getId() };
 			try {
 				queryRunner.update(sql, params);
 			} catch (SQLException e) {
@@ -160,8 +162,7 @@ public class UserDao {
 	public boolean checkid(String userid) {
 		String sql = "select * from user where id = ?";
 		try {
-			User user = queryRunner.query(sql,
-					new BeanHandler<User>(User.class), userid);
+			User user = queryRunner.query(sql, new BeanHandler<User>(User.class), userid);
 			if (user == null) {
 				return false;
 			} else {
@@ -178,8 +179,7 @@ public class UserDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where activecode = ?";
 		try {
-			User user = queryRunner.query(sql,
-					new BeanHandler<User>(User.class), code);
+			User user = queryRunner.query(sql, new BeanHandler<User>(User.class), code);
 			return user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -191,8 +191,7 @@ public class UserDao {
 	public boolean checkemail(String useremail) {
 		String sql = "select * from user where email = ?";
 		try {
-			User user = queryRunner.query(sql,
-					new BeanHandler<User>(User.class), useremail);
+			User user = queryRunner.query(sql, new BeanHandler<User>(User.class), useremail);
 			if (user == null) {
 				return false;
 			} else {
@@ -202,6 +201,18 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
+		}
+	}
+
+	public void setadmin(User user) {
+		// TODO Auto-generated method stub
+		String sql = "update user set defunct = ? where id = ?";
+		Object[] params = { user.getDefunct(), user.getId() };
+		try {
+			queryRunner.update(sql, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

@@ -82,4 +82,10 @@ public class UserService {
 		UserDao userDao = new UserDao();
 		return userDao.checkemail(useremail);
 	}
+
+	public void setadmin(User user) {
+		// TODO Auto-generated method stub
+		UserDao userDao = new UserDao();
+		userDao.setadmin(user);
+	}
 }

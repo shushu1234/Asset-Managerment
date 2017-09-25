@@ -148,6 +148,29 @@
 												<s:textfield name="tel" cssClass="form-control"  value="%{model.tel}" id="tel"></s:textfield>
 												<s:fielderror fieldName="tel" cssClass="fielderrors"></s:fielderror>
 											</div>
+											
+											<s:if test="%{#session.loginUser.role==1 }">
+										<div class="form-group" id="kindlist">
+										<label  for="select">部门选择</label>
+										<%--<div id="kindlist" class="col-md-9">--%>
+										<%--<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}" cssClass="form-control required" id="select" name="kindid" size="1" headerKey="" headerValue="--选择分类--"></s:select>--%>
+										<%--<select id="select" name="kindid" class="form-control required" size="1">--%>
+										<%--<option value="0">请选择类别</option>--%>
+										<%--<option value="1">Option #1</option>--%>
+										<%--<option value="2">Option #2</option>--%>
+										<%--<option value="3">Option #3</option>--%>
+										<%--</select>--%>
+										<%--</div>--%>
+										</div>
+										<div class="form-group">
+										<label>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+										<!-- 												<input name="name" type="text" class="form-control" placeholder="请输入姓名" id="name"/>
+										--> <s:textfield name="job" cssClass="form-control" placeholder="请输入职称"
+														 id="job" value="%{model.job}" ></s:textfield>
+										<s:fielderror fieldName="job" cssClass="fielderrors"></s:fielderror>
+										</div>
+											</s:if>
+											
 											<div class="form-group">
 												<label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 												<s:textfield name="email" cssClass="form-control" value="%{model.email}" id="email" readonly="true"></s:textfield>
@@ -216,6 +239,39 @@
 	reader.readAsDataURL(file);
 	}
 	}
+	</script>
+	<script type="text/javascript">
+	function kindlist() {
+	var kindlist=$("#kindlist");
+	$.post("${pageContext.request.contextPath}/ajax/departmentlist.action",function (data) {
+	var str="<select id=\"select\" name=\"department\" class=\"form-control required\" size=\"1\">\n" +
+	"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"0\">--选择部门--</option>";
+	var kind=data.alllist;
+	if (kind.length==0){
+	alert("对不起，管理员暂时还未添加任何部门，请联系管理员:)");
+	}
+	$.each(kind,function (n,kind) {
+	if (kind.leaf==2){
+	str+="</optgroup>";
+	str+="<optgroup label=\"" +
+	kind.name +
+	"\">"
+	}
+	else {
+	str+="<option value=\"" +
+	kind.id +
+	"\">" +
+	kind.name +
+	"</option>"
+	}
+	})
+	str+="</optgroup>";
+	str+="</select>";
+	str.slice(10);
+	kindlist.append(str);
+	})
+	}
+	kindlist();
 	</script>
 
 	</body>

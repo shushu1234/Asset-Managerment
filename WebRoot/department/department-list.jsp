@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@taglib  uri="/struts-tags" prefix="s"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- Basic -->
     	<meta charset="UTF-8" />
 
-		<title>资产录入</title>
-	 
+		<title>部门管理</title>
+	   
 		<!-- Mobile Metas -->
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- Plugins CSS-->
 		<link href="${pageContext.request.contextPath}/assets/plugins/bootkit/css/bootkit.css" rel="stylesheet" />
-		<link href="${pageContext.request.contextPath}/assets/plugins/pnotify/css/pnotify.custom.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />					
 		
 		<!-- Theme CSS -->
 		<link href="${pageContext.request.contextPath}/assets/css/jquery.mmenu.css" rel="stylesheet" />
@@ -124,10 +124,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<!-- End: Header -->
-		
-		<!-- Start: Content -->
-		<div class="container-fluid content">	
-			<div class="row">
 
 	<!-- Sidebar -->
 	<div class="sidebar">
@@ -243,166 +239,199 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- End Sidebar Footer-->
 	</div>
 	<!-- End Sidebar -->
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+	<div class="sidebar-collapse">
+	<!-- Sidebar Header Logo-->
+	<div class="sidebar-header">
+	<img src="assets/img/logo.png" class="img-responsive" alt=""/>
+	</div>
+	<!-- Sidebar Menu-->
+	<div class="sidebar-menu">
+	<nav id="menu" class="nav-main" role="navigation">
+	<ul class="nav nav-sidebar">
+	<div class="panel-body text-center">
+	<!--<div class="flag">-->
+	<!--<img src="assets/img/flags/china.png" class="img-flags" alt="" />-->
+	<!--</div>-->
+	<div class="bk-avatar">
+	<img src="${loginUser.avatarpath }" class="img-circle bk-img-60" alt=""/>
+	</div>
+
+	</div>
+	<li><a href="${pageContext.request.contextPath }/user_view.action">
+	<i class="fa  fa-user" aria-hidden="true"></i><span
+	class="text"> 个人信息</span></a></li>
+	<li><a href="${pageContext.request.contextPath }/file_list.action">
+	<i class="fa  fa-th-large" aria-hidden="true"></i><span
+	class="text">资产列表</span></a></li>
+
+	<li><a href="${pageContext.request.contextPath }/article_list.action">
+	<i class="fa   fa-file-text" aria-hidden="true"></i>
+	<span class="text"> 公告列表</span></a>
+	</li>
+
+	<li>
+	<a href="${pageContext.request.contextPath }/message_inbox.action">
+	<i class="fa fa-envelope" aria-hidden="true"></i><span>收件箱</span>
+	</a>
+	</li>
+	<li>
+
+	<a href="${pageContext.request.contextPath }/file_uploadview.action">
+	<i class="fa  fa-cloud-upload" aria-hidden="true"></i><span>资产添加</span>
+	</a>
+	</li>
+	<li class="nav-parent">
+	<a>
+	<i class="fa fa-credit-card" aria-hidden="true"></i><span>个人中心</span>
+	</a>
+	<ul class="nav nav-children">
+	<li><a href="${pageContext.request.contextPath}/user_recoversend.action"><span
+	class="text"> 密码重置</span></a></li>
+	<li><s:a  action="user_editview" namespace="/">
+	<s:param name="id" value="%{#session.loginUser.id}"></s:param>
+	<span class="text"> 修改个人信息</span>
+</s:a>
+	</li>
+	<li><a href="${pageContext.request.contextPath }/user_list.action"><span
+	class="text">用户查询</span></a></li>
+	</ul>
+	</li>
+	<li class="nav-parent">
+	<a>
+	<i class="fa fa-book" aria-hidden="true"></i><span>文章中心</span>
+	</a>
+	<ul class="nav nav-children">
+	<li><a href="${pageContext.request.contextPath }/article_editview.action"><span class="text"> 撰写文章</span></a></li>
+	<li><a href="${pageContext.request.contextPath }/article_myview.action"><span class="text"> 个人文章</span></a></li>
+	</ul>
+	</li>
+	<li class="nav-parent">
+	<a>
+	<i class="fa  fa-envelope-o" aria-hidden="true"></i><span>信息中心</span>
+	</a>
+	<ul class="nav nav-children">
+	<li>
+	<a href="${pageContext.request.contextPath}/message_composeview.action"><span class="text">发邮件</span></a>
+	</li>
+	<li>
+	<a href="${pageContext.request.contextPath}/message_sendview.action"><span class="text">发件箱</span></a>
+	</li>
+	<li>
+	<a href="${pageContext.request.contextPath}/message_deleteview.action"><span class="text">回收站</span></a>
+	</li>
+	</ul>
+	</li>
+	<li class="nav-parent">
+	<a>
+	<i class="fa fa-list-alt" aria-hidden="true"></i><span>类别管理</span>
+	</a>
+	<ul class="nav nav-children">
+	<li><a href="${pageContext.request.contextPath }/kind_addview.action"><span
+	class="text"> 添加根类别</span></a></li>
+	<li><a href="${pageContext.request.contextPath }/kind_list.action"><span>类别列表</span></a>
+	</li>
+	</ul>
+	</li>
+	<li>
+
+	<a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
+	<i class="fa  fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+	</a>
+	</li>
+	</ul>
+	</nav>
+	</div>
+	<!-- End Sidebar Menu-->
+	</div>
+	<!-- Sidebar Footer-->
+	<div class="sidebar-footer">
+	<div class="small-chart-visits">
+
+	</div>
+
+	</div>
+	<!-- End Sidebar Footer-->
+	</div>
+	<!-- End Sidebar -->
 						
 				<!-- Main Page -->
 				<div class="main ">
 					<!-- Page Header -->
 					<div class="page-header">
 						<div class="pull-left">
-
+													
 						</div>
 						<div class="pull-right">
-							<h2>资产录入</h2>
+							<h2>部门管理</h2>
 						</div>					
 					</div>
-					<!-- End Page Header -->
+					<!-- End Page Header -->					
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="panel panel-default form-wizard" id="w4">
-								<div class="panel-heading">
-									<h6><i class="fa fa-tags bk-fg-warning"></i>用户资产录入</h6>
+
+						<div class="col-sm-12">
+							<div class="panel panel-default bk-bg-white">
+								<div class="panel-heading bk-bg-white">
+									<h6><i class="fa fa-outdent red"></i>部门管理</h6>
 									<div class="panel-actions">
 										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
 										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 									</div>
 								</div>
-								<div class="panel-body">
-									<div class="wizard-progress wizard-progress-lg">
-										<div class="steps-progress">
-											<div class="progress-indicator"></div>
-										</div>
-										<ul class="wizard-steps">
-											<li class="active">
-												<a href="#w4-account" data-toggle="tab"><span>1</span>资产选择</a>
-											</li>
-											<li>
-												<a href="#w4-profile" data-toggle="tab"><span>2</span>资产详情</a>
-											</li>
-											<li>
-												<a href="#w4-billing" data-toggle="tab"><span>3</span>资产分类</a>
-											</li>
-											<li>
-												<a href="#w4-confirm" data-toggle="tab"><span>4</span>资产备注</a>
-											</li>
-										</ul>
+								<div class="panel-body clearfix">
+									<div class="dd" id="nestable3">
+									<h4 style="color:red">点击部门名称添加子类别，点击左侧按钮查看详情</h4>
+									<hr/>
+									<ol class="dd-list">
+										<s:iterator value="departments" var="department">
+												<li class="dd-item dd3-item" data-id="13"  style="margin-left:<s:property value="grade"/>px">																		
+													<s:a action="department_detail" namespace="/" style="color:#777;text-decoration: none;">
+														<div class="dd-handle dd3-handle btn-info">
+															<s:param name="id" value="id"></s:param>
+															<i class="fa fa-bars"></i>
+														</div>
+													</s:a>
+													
+													<a href="${pageContext.request.contextPath}/department_addview.action?parentid=${id}" style="color:#777;text-decoration: none;">
+														<div class="dd3-content">
+															
+															<s:property value="name"/>
+														</div>
+													</a>																										
+										</s:iterator>
+									</ol>
 									</div>
-									<%-- <s:actionerror cssStyle="list-style:none;" cssClass="alert alert-danger"/> --%>
-									<s:fielderror cssStyle="list-style:none;" cssClass="alert alert-danger"></s:fielderror>
-									<s:form cssClass="form-horizontal" action="file_upload" namespace="/" theme="simple" method="post"  novalidate="novalidate" enctype="multipart/form-data" name="uploadform">
-										
-										<s:hidden name="userid" value="%{#session.loginUser.name}"></s:hidden>
-										<div class="tab-content">
-											<div id="w4-account" class="tab-pane active">
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="file-input">附件文件</label>
-													<div class="col-md-9">
-													<!-- 	<input type="file" id="file-input" name="file-input" required> -->
-														<s:file id="file-input" name="upload" cssClass="required"></s:file>
-													</div>
-												</div>
-											</div>
-											<div id="w4-profile" class="tab-pane">
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-first-name">品牌</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="first-name" id="w4-first-name" required> -->
-														<s:textfield cssClass="form-control required" name="authorname1" id="w4-first-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">计量单位</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname2" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">保管人员</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname3" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">存放地点</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname4" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">所属部门</label>
-													<div class="col-sm-9">
-														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-														<s:textfield cssClass="form-control" name="authorname5" id="w4-last-name"></s:textfield>
-													</div>
-												</div>
-											</div>
-											<div id="w4-billing" class="tab-pane">
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="select">选择分类</label>
-													<div id="kindlist" class="col-md-9">
-														<%--<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}" cssClass="form-control required" id="select" name="kindid" size="1" headerKey="" headerValue="--选择分类--"></s:select>--%>
-															<%--<select id="select" name="kindid" class="form-control required" size="1">--%>
-																<%--<option value="0">请选择类别</option>--%>
-																<%--<option value="1">Option #1</option>--%>
-																<%--<option value="2">Option #2</option>--%>
-																<%--<option value="3">Option #3</option>--%>
-															<%--</select>--%>
-													</div>
-												</div>
-											</div>
-											<div id="w4-confirm" class="tab-pane">
-
-												<div class="form-group">
-													<label class="col-md-3 control-label">是否公开</label>
-													<div class="col-md-9">
-														<div class="radio-custom radio-inline">
-															<input type="radio" id="inline-radio1" name="privatefile" value="1" checked="checked">
-															<label for="inline-radio1"> 公开</label>
-														</div>
-														<div class="radio-custom radio-inline">
-															<input type="radio" id="inline-radio2" name="privatefile" value="2">
-															<label for="inline-radio2"> 隐藏	</label>
-														</div>
-													</div>
-												</div>
-
-
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="textarea-input">资产备注</label>
-													<div class="col-md-9">
-														<s:textarea id="textarea-input" name="remark" rows="9" cssClass="form-control" placeholder="请输入其他的备注信息，有助于管理员的审核..." ></s:textarea>
-													</div>
-												</div>
-											<!-- 	<input type="submit" value="提交" /> -->
-											</div>
-											<div class="panel-footer bk-bg-very-light-gray bk-radius">
-												<ul class="pager bk-margin-off">
-													<li class="previous disabled">
-														<a><i class="fa fa-angle-left"></i> 上一页</a>
-													</li>
-													<li class="finish hidden pull-right">
-														<a href="#" onclick="uploadform.submit();">提交</a>
-													</li>
-													<li class="next">
-														<a>下一页 <i class="fa fa-angle-right"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-					
-									</s:form>
-								</div>								
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End Main Page -->	
+				<!-- End Main Page -->		
 
 			</div>
 		</div><!--/container-->
 		
+		
+		<!-- Modal Dialog -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title bk-fg-primary">Modal title</h4>
+					</div>
+					<div class="modal-body">
+						<p class="bk-fg-danger">Here settings can be configured...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- End Modal Dialog -->		
 		
 		<div class="clearfix"></div>		
 		
@@ -414,14 +443,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath}/assets/vendor/js/jquery-2.1.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/vendor/skycons/js/skycons.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/vendor/skycons/js/skycons.js"></script>	
 		<script src="${pageContext.request.contextPath}/assets/vendor/js/pace.min.js"></script>
 		
 		<!-- Plugins JS-->
-		<script src="${pageContext.request.contextPath}/assets/plugins/autosize/jquery.autosize.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/js/jquery.validate.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/wizard/js/jquery.bootstrap.wizard.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>			
 		<script src="${pageContext.request.contextPath}/assets/plugins/sparkline/js/jquery.sparkline.min.js"></script>
 		
 		<!-- Theme JS -->		
@@ -429,45 +455,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 		
 		<!-- Pages JS -->
-		<script src="${pageContext.request.contextPath}/assets/js/pages/form-wizard.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/pages/nestable.js"></script>
 		
 		<!-- end: JavaScript-->
-
-		<script type="text/javascript">
-            function kindlist() {
-                var kindlist=$("#kindlist");
-                $.post("${pageContext.request.contextPath}/ajax/alllist.action",function (data) {
-                    var str="<select id=\"select\" name=\"kindid\" class=\"form-control required\" size=\"1\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"0\">--选择类别--</option>";
-                    var kind=data.alllist;
-                    if (kind.length==0){
-                        alert("对不起，你暂时还未添加任何类别，请先添加类别再添加资产:)");
-                        window.location.href="${pageContext.request.contextPath}/kind_addview.action";
-					}
-                    $.each(kind,function (n,kind) {
-                        if (kind.leaf==2){
-                            str+="</optgroup>";
-                            str+="<optgroup label=\"" +
-                                kind.name +
-                                "\">"
-                        }
-                        else {
-                            str+="<option value=\"" +
-                                kind.id +
-                                "\">" +
-                                kind.name +
-                                "</option>"
-                        }
-                    })
-                    str+="</optgroup>";
-                    str+="</select>";
-                    str.slice(10);
-                    kindlist.append(str);
-                })
-            }
-            kindlist();
-		</script>
-
+		
 	</body>
 	
 </html>

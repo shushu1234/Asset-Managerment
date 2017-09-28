@@ -147,7 +147,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 				+ UUID.randomUUID().toString().replace("-", "");
 		user.setActivecode(activecode);
 		String emailcontent = MailTemplate.registtmp(user.getName(), user.getActivecode());
-		MailUtils.sendMail(user.getEmail(), "Fileware用户注册确认", emailcontent);
+		// MailUtils.sendMail(user.getEmail(), "Fileware用户注册确认", emailcontent);
 		log.info(user.getId() + "注册");
 		System.out.println(user);
 		userService.regist(user);

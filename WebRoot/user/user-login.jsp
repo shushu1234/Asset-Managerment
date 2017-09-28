@@ -12,7 +12,7 @@
     <!-- Basic -->
     <meta charset="UTF-8"/>
 
-    <title>Fileware</title>
+    <title>资产管理系统</title>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>

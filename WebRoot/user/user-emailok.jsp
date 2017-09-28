@@ -71,14 +71,8 @@
 							<div class="text-center">
 								<h1>恭喜你 :)</h1>
 								<h2>你的账户为:<span style="color: red;font-size: 40px">${loginUser.id }</span>你可以通过该账户或者邮箱登录系统</h2>
-								<h3>激活邮件发送成功</h3>
-								<input type="hidden" value="${loginUser.email}" id="useremail">
-								<h4>如果长时间未接收到激活邮件，有可能被放进垃圾箱了，请尝试恢复，谢谢你的参与...</h4>
 								<a href="user-login.jsp">
 									<button type="button" class="btn btn-primary"><i class="fa fa-user"></i> 登录</button>
-								</a>
-								<a id="go" href="#">
-									<button type="button" class="btn btn-primary"><i class="fa fa-envelope-o"></i> 激活</button>
 								</a>
 							</div>
 						</div>					

@@ -147,120 +147,132 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="container-fluid content">
         <div class="row">
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-        <div class="sidebar-collapse">
-        <!-- Sidebar Header Logo-->
-        <div class="sidebar-header">
-        <img src="assets/img/logo.png" class="img-responsive" alt=""/>
-        </div>
-        <!-- Sidebar Menu-->
-        <div class="sidebar-menu">
-        <nav id="menu" class="nav-main" role="navigation">
-        <ul class="nav nav-sidebar">
-        <div class="panel-body text-center">
-        <!--<div class="flag">-->
-        <!--<img src="assets/img/flags/china.png" class="img-flags" alt="" />-->
-        <!--</div>-->
-        <div class="bk-avatar">
-        <img src="${loginUser.avatarpath }" class="img-circle bk-img-60" alt=""/>
-        </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+            <div class="sidebar-collapse">
+            <!-- Sidebar Header Logo-->
+            <div class="sidebar-header">
+            <img src="assets/img/logo.png" class="img-responsive" alt=""/>
+            </div>
+            <!-- Sidebar Menu-->
+            <div class="sidebar-menu">
+            <nav id="menu" class="nav-main" role="navigation">
+            <ul class="nav nav-sidebar">
+            <div class="panel-body text-center">
+            <!--<div class="flag">-->
+            <!--<img src="assets/img/flags/china.png" class="img-flags" alt="" />-->
+            <!--</div>-->
+            <div class="bk-avatar">
+            <img src="${loginUser.avatarpath }" class="img-circle bk-img-60" alt=""/>
+            </div>
 
-        </div>
-        <li><a href="${pageContext.request.contextPath }/user_view.action">
-        <i class="fa fa-user" aria-hidden="true"></i><span
-        class="text"> 个人信息</span></a></li>
-        <li><a href="${pageContext.request.contextPath }/file_list.action">
-        <i class="fa fa-th-large" aria-hidden="true"></i><span
-        class="text">资产列表</span></a></li>
+            </div>
+            <li><a href="${pageContext.request.contextPath }/user_view.action">
+            <i class="fa fa-user" aria-hidden="true"></i><span
+            class="text"> 个人信息</span></a></li>
 
-        <li>
-        <a href="${pageContext.request.contextPath }/message_inbox.action">
-        <i class="fa fa-envelope" aria-hidden="true"></i><span>收件箱</span>
-        </a>
-        </li>
-        <li>
 
-        <a href="${pageContext.request.contextPath }/file_uploadview.action">
-        <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>资产添加</span>
-        </a>
-        </li>
-        <li class="nav-parent">
-        <a>
-        <i class="fa fa-credit-card" aria-hidden="true"></i><span>个人中心</span>
-        </a>
-        <ul class="nav nav-children">
-        <li><a href="${pageContext.request.contextPath}/user_recoversend.action"><span
-        class="text"> 密码重置</span></a></li>
-        <li>
-        <s:a action="user_editview" namespace="/">
-            <s:param name="id" value="%{#session.loginUser.id}"></s:param>
-            <span class="text"> 修改个人信息</span>
-        </s:a>
-        </li>
-        <li><a href="${pageContext.request.contextPath }/user_list.action"><span
-        class="text">用户查询</span></a></li>
-        </ul>
-        </li>
-        <li class="nav-parent">
-        <a>
-        <i class="fa fa-envelope-o" aria-hidden="true"></i><span>信息中心</span>
-        </a>
-        <ul class="nav nav-children">
-        <li>
-        <a href="${pageContext.request.contextPath}/message_composeview.action"><span class="text">发邮件</span></a>
-        </li>
-        <li>
-        <a href="${pageContext.request.contextPath}/message_sendview.action"><span class="text">发件箱</span></a>
-        </li>
-        <li>
-        <a href="${pageContext.request.contextPath}/message_deleteview.action"><span class="text">回收站</span></a>
-        </li>
-        </ul>
-        </li>
-        <li class="nav-parent">
-        <a>
-        <i class="fa fa-list-alt" aria-hidden="true"></i><span>类别管理</span>
-        </a>
-        <ul class="nav nav-children">
-        <li><a href="${pageContext.request.contextPath }/kind_addview.action"><span
-        class="text"> 添加根类别</span></a></li>
-        <li><a href="${pageContext.request.contextPath }/kind_list.action"><span>类别列表</span></a>
-        </li>
-        </ul>
-        </li>
-        <li class="nav-parent">
-        <a>
-        <i class="fa fa-list-alt" aria-hidden="true"></i><span>部门管理</span>
-        </a>
-        <ul class="nav nav-children">
-        <li><a href="${pageContext.request.contextPath }/department_addview.action"><span
-        class="text"> 添加根部门</span></a></li>
-        <li><a href="${pageContext.request.contextPath }/department_list.action"><span>部门列表</span></a>
-        </li>
-        </ul>
-        </li>
-        <li>
 
-        <a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-        <i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
-        </a>
-        </li>
-        </ul>
-        </nav>
-        </div>
-        <!-- End Sidebar Menu-->
-        </div>
-        <!-- Sidebar Footer-->
-        <div class="sidebar-footer">
-        <div class="small-chart-visits">
+            <s:if test="%{#session.loginUser.role==1}">
+                    <li>
+                    <a href="${pageContext.request.contextPath }/file_list.action">
+                    <i class="fa fa-th-large" aria-hidden="true"></i><span
+                    class="text">资产列表</span></a>
+                    </li>
+                    <li>
+                    <a href="${pageContext.request.contextPath }/user_list.action">
+                    <i class="fa fa-th-large" aria-hidden="true"></i><span
+                    class="text">用户列表</span></a>
+                    </li>
+            </s:if>
+            <li class="nav-parent">
+            <a>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i><span>信息中心</span>
+            </a>
+            <ul class="nav nav-children">
+            <li>
+            <a href="${pageContext.request.contextPath }/message_inbox.action">
+            <span>收件箱</span>
+            </a>
+            </li>
+            <li>
+            <a href="${pageContext.request.contextPath}/message_composeview.action"><span class="text">发邮件</span></a>
+            </li>
+            <li>
+            <a href="${pageContext.request.contextPath}/message_sendview.action"><span class="text">发件箱</span></a>
+            </li>
+            <li>
+            <a href="${pageContext.request.contextPath}/message_deleteview.action"><span class="text">回收站</span></a>
+            </li>
+            </ul>
+            </li>
+            <li class="nav-parent">
+            <a>
+            <i class="fa fa-list-alt" aria-hidden="true"></i><span>资产管理</span>
+            </a>
+            <ul class="nav nav-children">
+            <li>
 
-        </div>
+            <a href="${pageContext.request.contextPath }/file_uploadview.action">
+            <span>资产添加</span>
+            </a>
+            </li>
+            <li><a href="${pageContext.request.contextPath }/kind_addview.action"><span
+            class="text"> 添加资产根类别</span></a></li>
+            <li><a href="${pageContext.request.contextPath }/kind_list.action"><span>资产类别列表</span></a>
+            </li>
+            </ul>
+            </li>
+            <s:if test="%{#session.loginUser.role==1}">
+                    <li class="nav-parent">
+                    <a>
+                    <i class="fa fa-list-alt" aria-hidden="true"></i><span>部门管理</span>
+                    </a>
+                    <ul class="nav nav-children">
+                    <li><a href="${pageContext.request.contextPath }/department_addview.action"><span
+                    class="text"> 添加根部门</span></a></li>
+                    <li><a href="${pageContext.request.contextPath }/department_list.action"><span>部门列表</span></a>
+                    </li>
+                    </ul>
+                    </li>
+            </s:if>
+            <li class="nav-parent">
+            <a>
+            <i class="fa fa-credit-card" aria-hidden="true"></i><span>个人中心</span>
+            </a>
+            <ul class="nav nav-children">
+            <li><a href="${pageContext.request.contextPath}/user_recoversend.action"><span
+            class="text"> 密码重置</span></a></li>
+            <li>
+            <s:a action="user_editview" namespace="/">
+                    <s:param name="id" value="%{#session.loginUser.id}"></s:param>
+                    <span class="text"> 修改个人信息</span>
+            </s:a>
+            </li>
 
-        </div>
-        <!-- End Sidebar Footer-->
-        </div>
-        <!-- End Sidebar -->
+            </ul>
+            </li>
+            <li>
+
+            <a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
+            <i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+            </a>
+            </li>
+            </ul>
+            </nav>
+            </div>
+            <!-- End Sidebar Menu-->
+            </div>
+            <!-- Sidebar Footer-->
+            <div class="sidebar-footer">
+            <div class="small-chart-visits">
+
+            </div>
+
+            </div>
+            <!-- End Sidebar Footer-->
+            </div>
+            <!-- End Sidebar -->
 
         <!-- Main Page -->
         <div class="main ">

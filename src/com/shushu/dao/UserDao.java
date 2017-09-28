@@ -44,7 +44,7 @@ public class UserDao {
 	public void regist(User user) {
 		String sql = "insert into user(id,name,pwd,gender,tel,email,role,defunct,avatarpath,activecode) values(?,?,?,?,?,?,?,?,?,?)";
 		Object[] params = { user.getId(), user.getName(), user.getPwd(), user.getGender(), user.getTel(),
-				user.getEmail(), 0, "Y", user.getAvatarpath(), user.getActivecode() };
+				user.getEmail(), 0, "Y", user.getAvatarpath(), "" };
 		try {
 			queryRunner.update(sql, params);
 		} catch (SQLException e) {
@@ -119,12 +119,13 @@ public class UserDao {
 	public void update(User user, boolean isEditUpload) {
 		String departmentName = null;
 		String jobName = null;
-		if (user.getDepartment() == null) {
+		if (user.getDepartment().equals("0")) {
 			User tempuser = findById(user.getId());
 			departmentName = tempuser.getDepartment();
 			jobName = tempuser.getJob();
 		} else {
 			departmentName = (new DepartmentDao().findById(Integer.parseInt(user.getDepartment()))).getName();
+			jobName = user.getJob();
 		}
 		if (isEditUpload) {
 			// 上传了头像
@@ -146,7 +147,7 @@ public class UserDao {
 			}
 		} else {
 			// 没有上传头像
-			String sql = "update user set name = ?,pwd=?, gender = ?, tel = ?, email = ?, state= ?,activecode=? ,department = ?, job = ?where id = ?";
+			String sql = "update user set name = ?,pwd=?, gender = ?, tel = ?, email = ?, state= ?,activecode=? ,department = ?, job = ? where id = ?";
 			Object[] params = { user.getName(), user.getPwd(), user.getGender(), user.getTel(), user.getEmail(),
 					user.getState(), user.getActivecode(), departmentName, jobName, user.getId() };
 			try {

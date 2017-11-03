@@ -12,10 +12,11 @@
     <!-- Basic -->
     <meta charset="UTF-8"/>
 
-    <title>资产信息修改</title>
+    <title>资产列表</title>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" type="image/x-icon"/>
@@ -46,9 +47,15 @@
 
     <!-- Plugins CSS-->
     <link href="${pageContext.request.contextPath}/assets/plugins/bootkit/css/bootkit.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/assets/plugins/select2/select2.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/assets/plugins/jquery-datatables-bs3/css/datatables.css"
+          rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/assets/plugins/pnotify/css/pnotify.custom.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/assets/plugins/magnific-popup/css/magnific-popup.css"
+          rel="stylesheet"/>
 
     <!-- Theme CSS -->
+
     <link href="${pageContext.request.contextPath}/assets/css/jquery.mmenu.css" rel="stylesheet"/>
 
     <!-- Page CSS -->
@@ -266,158 +273,162 @@
     </div>
     <!-- End Sidebar -->
 
+
         <!-- Main Page -->
-        <div class="main ">
+        <div class="main sidebar-minified">
             <!-- Page Header -->
             <div class="page-header">
                 <div class="pull-left">
 
                 </div>
                 <div class="pull-right">
-                <h2>资产信息修改</h2>
+                    <h2>个人资产列表</h2>
                 </div>
             </div>
             <!-- End Page Header -->
+            <!-- Modal Danger -->
+
+            <%--<s:form namespace="/" action="file_list" theme="simple" method="post">--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<label class="col-md-3 control-label" for="id">资产id</label>--%>
+                    <%--<div class="col-md-9">--%>
+                        <%--<input id="id" name="id" class="form-control" placeholder="请输入资产id">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<label class="col-md-3 control-label" for="name">附件名称</label>--%>
+                    <%--<div class="col-md-9">--%>
+                        <%--<s:textfield id="name" name="name" cssClass="form-control" placeholder="请输入附件名称"></s:textfield>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<s:if test="%{#session.loginUser.role==1 }">--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<label class="col-md-3 control-label" for="userid">用户id</label>--%>
+                    <%--<div class="col-md-9">--%>
+                        <%--<s:textfield id="userid" name="userid" cssClass="form-control"--%>
+                                     <%--placeholder="请输入上传用户id"></s:textfield>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+               <%----%>
+                <%----%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<label class="col-md-3 control-label" for="open">状态</label>--%>
+                    <%--<div class="col-md-9">--%>
+                            <%--&lt;%&ndash;                         <s:select list="#{'0':'未开放','1':'已开放下载' }" id="open" name="open" cssClass="form-control" size="1" headerKey="" headerValue="--选择状态--"></s:select>--%>
+                             <%--&ndash;%&gt; <select id="open" name="open" class="form-control" size="1">--%>
+                        <%--<option selected value="">--选择状态--</option>--%>
+                        <%--<option value="1">未审核</option>--%>
+                        <%--<option value="2">已审核</option>--%>
+                    <%--</select>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                 <%--</s:if>--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<label class="col-md-3 control-label" for="kindid">类别</label>--%>
+                    <%--<div class="col-md-9" id="kindlist">--%>
+                            <%--&lt;%&ndash;<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐' }" id="kindid" name="kindid" cssClass="form-control" size="1" headerKey="" headerValue="--选择类别--"></s:select>&ndash;%&gt;--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="form-group col-md-12">--%>
+                    <%--<button class="bk-margin-5 btn btn-labeled btn-success" type="submit" style="margin-right: 10px">--%>
+                        <%--<span class="btn-label"><i class="fa fa-check"></i></span>查询--%>
+                    <%--</button>--%>
+                    <%--<button class="bk-margin-5 btn btn-labeled btn-info" type="reset">--%>
+                        <%--<span class="btn-label"><i class="fa fa-refresh"></i></span>重置--%>
+                    <%--</button>--%>
+                <%--</div>--%>
+            <%--</s:form>--%>
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="panel panel-default form-wizard" id="w4">
-                        <div class="panel-heading">
-                            <h6><i class="fa fa-tags bk-fg-warning"></i>资产信息修改</h6>
+                    <div class="panel panel-default bk-bg-white">
+                        <div class="panel-heading bk-bg-white">
+                            <h6><i class="fa fa-user red"></i><span class="break"></span>个人资产列表</h6>
                             <div class="panel-actions">
                                 <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
                                 <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
                         <div class="panel-body">
-                            <div class="wizard-progress wizard-progress-lg">
-                                <div class="steps-progress">
-                                    <div class="progress-indicator"></div>
-                                </div>
-                                <ul class="wizard-steps">
-                                    <li class="active">
-                                        <a href="#w4-account" data-toggle="tab"><span>1</span>资产选择</a>
-                                    </li>
-                                    <li>
-                                        <a href="#w4-profile" data-toggle="tab"><span>2</span>资产详情</a>
-                                    </li>
-                                    <li>
-                                        <a href="#w4-billing" data-toggle="tab"><span>3</span>资产分类</a>
-                                    </li>
-                                    <li>
-                                        <a href="#w4-confirm" data-toggle="tab"><span>4</span>资产备注</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <s:actionerror/>
-                            <s:fielderror></s:fielderror>
-                            <s:form cssClass="form-horizontal" action="file_edit" namespace="/" theme="simple"
-                                    method="post" novalidate="novalidate" enctype="multipart/form-data" name="editform">
-                                <s:hidden name="id" value="%{model.id}"></s:hidden>
-                                <s:hidden name="userid" value="%{#session.loginUser.id}"></s:hidden>
-                                <div class="tab-content">
-                                    <div id="w4-account" class="tab-pane active">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="filename">附件名称</label>
-                                            <div class="col-md-9">
-                                                <!-- 	<input type="file" id="file-input" name="file-input" required> -->
-                                                <s:textfield name="name" cssClass="form-control" id="filename"
-                                                             readonly="true" value="%{model.name}"> </s:textfield>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="w4-profile" class="tab-pane">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-first-name">品牌</label>
-                                            <div class="col-sm-9">
-                                                <!-- <input type="text" class="form-control" name="first-name" id="w4-first-name" required> -->
-                                                <s:textfield cssClass="form-control required" name="authorname1"
-                                                             id="w4-first-name"
-                                                             value="%{model.authorname1}"></s:textfield>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">计量单位</label>
-                                            <div class="col-sm-9">
-                                                <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-                                                <s:textfield cssClass="form-control" name="authorname2"
-                                                             id="w4-last-name"
-                                                             value="%{model.authorname2}"></s:textfield>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">保管人员</label>
-                                            <div class="col-sm-9">
-                                                <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-                                                <s:textfield cssClass="form-control" name="authorname3"
-                                                             id="w4-last-name"
-                                                             value="%{model.authorname3}"></s:textfield>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">存放地点</label>
-                                            <div class="col-sm-9">
-                                                <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-                                                <s:textfield cssClass="form-control" name="authorname4"
-                                                             id="w4-last-name"
-                                                             value="%{model.authorname4}"></s:textfield>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="w4-last-name">所属部门</label>
-                                            <div class="col-sm-9">
-                                                <!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
-                                                <s:textfield cssClass="form-control" name="authorname5"
-                                                             id="w4-last-name"
-                                                             value="%{model.authorname5}"></s:textfield>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="w4-billing" class="tab-pane">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="select">选择分类</label>
-                                            <div id="kindlist" class="col-md-9">
-                                                <%--<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}"--%>
-                                                          <%--cssClass="form-control required" id="select" name="kindid"--%>
-                                                          <%--size="1" headerKey="" headerValue="--选择分类--"--%>
-                                                          <%--value="%{model.kindid}"></s:select>--%>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="w4-confirm" class="tab-pane">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="textarea-input">文件备注</label>
-                                            <div class="col-md-9">
-                                                <s:textarea id="textarea-input" name="remark" rows="9"
-                                                            cssClass="form-control"
-                                                            placeholder="请输入其他的备注信息，有助于管理员的审核..."
-                                                            value="%{model.remark}"></s:textarea>
-                                            </div>
-                                        </div>
-                                        <!-- 	<input type="submit" value="提交" /> -->
-                                    </div>
-                                    <div class="panel-footer bk-bg-very-light-gray bk-radius">
-                                        <ul class="pager bk-margin-off">
-                                            <li class="previous disabled">
-                                                <a><i class="fa fa-angle-left"></i> 上一页</a>
-                                            </li>
-                                            <li class="finish hidden pull-right">
-                                                <a href="#" onclick="editform.submit();">提交</a>
-                                            </li>
-                                            <li class="next">
-                                                <a>下一页 <i class="fa fa-angle-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </s:form>
+                            <table class="table table-bordered table-striped" id="datatable-default">
+                                <thead>
+                                <tr>
+                                    <th>资产id</th>
+                                    <th>附件名称</th>
+                                    <th>资产类型</th>
+                                    <th>附件大小</th>
+                                    <th>添加用户id</th>
+                                    <th>添加日期</th>
+                                    <th>资产状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <s:iterator value="uploadFiles" var="uploadFile">
+                                    <tr>
+                                        <td id="fileid">
+                                            <s:property value="id"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="name"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="kind"/>
+                                        </td>
+                                        <td>
+                                            <s:if test="%{#uploadFile.filesize<1048576}">
+                                                <s:text name="global.format.number"><s:param
+                                                        value="filesize/1024.0"/></s:text>
+                                                <span>&nbsp;KB</span>
+                                            </s:if>
+                                            <s:else>
+                                                <s:text name="global.format.number"><s:param
+                                                        value="filesize/1048576.0"/></s:text>
+                                                <span>&nbsp;MB</span>
+                                            </s:else>
+                                        </td>
+                                        <td>
+                                            <s:property value="userid"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="uploaddate"/>
+                                        </td>
+                                        <td>
+                                            <s:if test="%{#uploadFile.open==2}">
+                                                <span class="label label-success">已审核</span>
+                                            </s:if>
+                                            <s:else>
+                                                <span class="label label-danger">未审核</span>
+                                            </s:else>
+                                        </td>
+                                        <td>
+                                            <s:a class="btn btn-success" action="file_detail" namespace="/">
+                                                <s:param name="id" value="id"></s:param>
+                                                <i class="fa fa-search-plus "></i>
+                                            </s:a>
+                                            <s:a cssClass="btn btn-primary" action="file_download" namespace="/">
+                                                <s:param name="id" value="id"></s:param>
+                                                <i class="fa fa-download "></i>
+                                            </s:a>
+                                            
+											<s:if test="%{#session.loginUser.id==userid}">
+                                            <s:a cssClass="btn btn-info" action="file_editview" namespace="/">
+                                                <s:param name="id" value="id"></s:param>
+                                                <i class="fa fa-edit "></i>
+                                            </s:a>
+                                            </s:if>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- End Main Page -->
-
     </div>
 </div><!--/container-->
 
@@ -426,7 +437,6 @@
 
 
 <!-- start: JavaScript-->
-
 <!-- Vendor JS-->
 <script src="${pageContext.request.contextPath}/assets/vendor/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/js/jquery-2.1.1.min.js"></script>
@@ -436,53 +446,50 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/js/pace.min.js"></script>
 
 <!-- Plugins JS-->
-<script src="${pageContext.request.contextPath}/assets/plugins/autosize/jquery.autosize.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/js/jquery.validate.js"></script>
-<script src="${pageContext.request.contextPath}/assets/plugins/wizard/js/jquery.bootstrap.wizard.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/moment/js/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/select2/select2.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables/media/js/jquery.dataTables.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/DT_bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/jquery-datatables-bs3/js/datatables.js"></script>
 <script src="${pageContext.request.contextPath}/assets/plugins/sparkline/js/jquery.sparkline.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/pnotify/js/pnotify.custom.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/magnific-popup/js/magnific-popup.js"></script>
 
 <!-- Theme JS -->
 <script src="${pageContext.request.contextPath}/assets/js/jquery.mmenu.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 <!-- Pages JS -->
-<script src="${pageContext.request.contextPath}/assets/js/pages/form-wizard.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/pages/table-advanced.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/pages/ui-modals.js"></script>
+
 
 <!-- end: JavaScript-->
 
-
 <script type="text/javascript">
     function kindlist() {
-        var kindlist=$("#kindlist");
-        $.post("${pageContext.request.contextPath}/ajax/alllist.action",function (data) {
-            var str="<select id=\"select\" name=\"kindid\" class=\"form-control required\" size=\"1\">\n" +
+        var kindlist = $("#kindlist");
+        $.post("${pageContext.request.contextPath}/ajax/leaflist.action", function (data) {
+            var str = "<select id=\"select\" name=\"kindid\" class=\"form-control required\" size=\"1\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"0\">--选择类别--</option>";
-            var kind=data.alllist;
-            $.each(kind,function (n,kind) {
-                if (kind.leaf==2){
-                    str+="</optgroup>";
-                    str+="<optgroup label=\"" +
-                        kind.name +
-                        "\">"
-                }
-                else {
-                    str+="<option value=\"" +
-                        kind.id +
-                        "\">" +
-                        kind.name +
-                        "</option>"
-                }
+            var kind = data.leaflist;
+            $.each(kind, function (n, kind) {
+                str += "<option value=\"" +
+                    kind.id +
+                    "\">" +
+                    kind.name +
+                    "</option>"
+
             })
-            str+="</optgroup>";
-            str+="</select>";
+            str += "</select>";
             str.slice(10);
             kindlist.append(str);
         })
     }
+
     kindlist();
 </script>
-
 
 </body>
 

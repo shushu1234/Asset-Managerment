@@ -159,7 +159,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	class="text"> 个人信息</span></a></li>
 
 
-
+	<li><a href="${pageContext.request.contextPath }/file_userfilelist.action">
+	<i class="fa fa-user" aria-hidden="true"></i><span
+	class="text"> 个人资产</span></a></li>
 	<s:if test="%{#session.loginUser.role==1}">
 		<li>
 		<a href="${pageContext.request.contextPath }/file_list.action">
@@ -242,7 +244,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<li>
 
 	<a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-	<i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+	<i class="fa fa-comment-o" aria-hidden="true"></i><span>报废/异动申请</span>
 	</a>
 	</li>
 	</ul>
@@ -260,7 +262,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- End Sidebar Footer-->
 	</div>
 	<!-- End Sidebar -->
-						
 				<!-- Main Page -->
 				<div class="main ">
 					<!-- Page Header -->
@@ -321,11 +322,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-warning"><s:property value="%{model.authorname1}"/></span>
-											品牌
+											品牌规格
 										</li>
 										<li class="list-group-item">
 										<span class="badge bk-bg-info"><s:property value="%{model.authorname2}"/></span>
-											计量单位
+											单价单位
 										</li>
 										<li class="list-group-item">
 											<span class="badge bk-bg-primary"><s:property value="%{model.authorname3}"/></span>					

@@ -42,9 +42,9 @@ public class UserDao {
 	 * 用户注册
 	 */
 	public void regist(User user) {
-		String sql = "insert into user(id,name,pwd,gender,tel,email,role,defunct,avatarpath,activecode) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into user(id,name,pwd,gender,tel,email,role,defunct,avatarpath,activecode,department,job) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] params = { user.getId(), user.getName(), user.getPwd(), user.getGender(), user.getTel(),
-				user.getEmail(), 0, "Y", user.getAvatarpath(), "" };
+				user.getEmail(), 0, "Y", user.getAvatarpath(), "", user.getDepartment(), user.getJob() };
 		try {
 			queryRunner.update(sql, params);
 		} catch (SQLException e) {

@@ -157,7 +157,9 @@
 	class="text"> 个人信息</span></a></li>
 
 
-
+	<li><a href="${pageContext.request.contextPath }/file_userfilelist.action">
+	<i class="fa fa-user" aria-hidden="true"></i><span
+	class="text"> 个人资产</span></a></li>
 	<s:if test="%{#session.loginUser.role==1}">
 		<li>
 		<a href="${pageContext.request.contextPath }/file_list.action">
@@ -240,7 +242,7 @@
 	<li>
 
 	<a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-	<i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+	<i class="fa fa-comment-o" aria-hidden="true"></i><span>报废/异动申请</span>
 	</a>
 	</li>
 	</ul>

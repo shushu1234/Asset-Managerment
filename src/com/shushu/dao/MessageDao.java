@@ -25,17 +25,15 @@ public class MessageDao {
 		// TODO Auto-generated method stub
 		String sql = "insert into message (title,content,sender,receiver,sendtime,sendername,receivername,senderpath) values(?,?,?,?,?,?,?,?)";
 		Date nowDate = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd HH:dd:ss");
+		System.out.println(message);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:dd:ss");
 		String nowtime = simpleDateFormat.format(nowDate);
 		UserDao userDao = new UserDao();
 		String sendername = userDao.findById(message.getSender()).getName();
 		String recivername = userDao.findById(message.getReceiver()).getName();
-		String senderpath = userDao.findById(message.getSender())
-				.getAvatarpath();
-		Object[] params = { message.getTitle(), message.getContent(),
-				message.getSender(), message.getReceiver(), nowtime,
-				sendername, recivername, senderpath };
+		String senderpath = userDao.findById(message.getSender()).getAvatarpath();
+		Object[] params = { message.getTitle(), message.getContent(), message.getSender(), message.getReceiver(),
+				nowtime, sendername, recivername, senderpath };
 		try {
 			queryRunner.update(sql, params);
 			return true;
@@ -50,8 +48,7 @@ public class MessageDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from message where receiver = ?  and receiverdisable = ? order by id desc";
 		try {
-			List<Message> newmsg = queryRunner.query(sql,
-					new BeanListHandler<Message>(Message.class), userid, flag);
+			List<Message> newmsg = queryRunner.query(sql, new BeanListHandler<Message>(Message.class), userid, flag);
 			return newmsg;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,9 +61,8 @@ public class MessageDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from message where (receiver = ? or sender = ?) and (receiverdisable = ? or senderdisable = ?) order by id desc";
 		try {
-			List<Message> newmsg = queryRunner.query(sql,
-					new BeanListHandler<Message>(Message.class), userid,
-					userid, flag, flag);
+			List<Message> newmsg = queryRunner.query(sql, new BeanListHandler<Message>(Message.class), userid, userid,
+					flag, flag);
 			return newmsg;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,8 +75,7 @@ public class MessageDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from message where sender = ? and senderdisable = ? order by id desc";
 		try {
-			List<Message> newmsg = queryRunner.query(sql,
-					new BeanListHandler<Message>(Message.class), userid, flag);
+			List<Message> newmsg = queryRunner.query(sql, new BeanListHandler<Message>(Message.class), userid, flag);
 			return newmsg;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -99,8 +94,7 @@ public class MessageDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from message where id = ?";
 		try {
-			Message message = queryRunner.query(sql, new BeanHandler<Message>(
-					Message.class), id);
+			Message message = queryRunner.query(sql, new BeanHandler<Message>(Message.class), id);
 			return message;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -136,8 +130,7 @@ public class MessageDao {
 		try {
 			int count = queryRunner.query(sql, new ResultSetHandler<Integer>() {
 				@Override
-				public Integer handle(java.sql.ResultSet rs)
-						throws SQLException {
+				public Integer handle(java.sql.ResultSet rs) throws SQLException {
 					if (rs.next()) {
 						return rs.getInt(1); // 或者rs.getLong("count");
 					}
@@ -164,8 +157,7 @@ public class MessageDao {
 		try {
 			int count = queryRunner.query(sql, new ResultSetHandler<Integer>() {
 				@Override
-				public Integer handle(java.sql.ResultSet rs)
-						throws SQLException {
+				public Integer handle(java.sql.ResultSet rs) throws SQLException {
 					if (rs.next()) {
 						return rs.getInt(1); // 或者rs.getLong("count");
 					}
@@ -185,8 +177,7 @@ public class MessageDao {
 		try {
 			int count = queryRunner.query(sql, new ResultSetHandler<Integer>() {
 				@Override
-				public Integer handle(java.sql.ResultSet rs)
-						throws SQLException {
+				public Integer handle(java.sql.ResultSet rs) throws SQLException {
 					if (rs.next()) {
 						return rs.getInt(1); // 或者rs.getLong("count");
 					}

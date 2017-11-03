@@ -85,6 +85,7 @@
 			<result name="deleteSUCCESS" type="redirectAction">file_list</result>
 			<result name="detailSUCCESS">/file/file-detail.jsp</result>
 			<result name="uploadviewSUCCESS">/file/file-upload.jsp</result>
+			<result name="usefileSUCCESS">/file/file-userfilelist.jsp</result>
 			<interceptor-ref name="defaultStack">
 				<!-- 限制最大上传文件大小为20M -->
 				<param name="fileUpload.maximumSize">20971520</param>

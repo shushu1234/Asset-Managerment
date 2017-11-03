@@ -154,7 +154,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	class="text"> 个人信息</span></a></li>
 
 
-
+	<li><a href="${pageContext.request.contextPath }/file_userfilelist.action">
+	<i class="fa fa-user" aria-hidden="true"></i><span
+	class="text"> 个人资产</span></a></li>
 	<s:if test="%{#session.loginUser.role==1}">
 		<li>
 		<a href="${pageContext.request.contextPath }/file_list.action">
@@ -237,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<li>
 
 	<a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-	<i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+	<i class="fa fa-comment-o" aria-hidden="true"></i><span>报废/异动申请</span>
 	</a>
 	</li>
 	</ul>
@@ -302,7 +304,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:fielderror cssStyle="list-style:none;" cssClass="alert alert-danger"></s:fielderror>
 									<s:form cssClass="form-horizontal" action="file_upload" namespace="/" theme="simple" method="post"  novalidate="novalidate" enctype="multipart/form-data" name="uploadform">
 										
-										<s:hidden name="userid" value="%{#session.loginUser.name}"></s:hidden>
+										<s:hidden name="userid" value="%{#session.loginUser.id}"></s:hidden>
 										<div class="tab-content">
 											<div id="w4-account" class="tab-pane active">
 												<div class="form-group">
@@ -315,14 +317,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</div>
 											<div id="w4-profile" class="tab-pane">
 												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-first-name">品牌</label>
+													<label class="col-sm-3 control-label" for="w4-first-name">品牌规格</label>
 													<div class="col-sm-9">
 														<!-- <input type="text" class="form-control" name="first-name" id="w4-first-name" required> -->
 														<s:textfield cssClass="form-control required" name="authorname1" id="w4-first-name"></s:textfield>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-sm-3 control-label" for="w4-last-name">计量单位</label>
+													<label class="col-sm-3 control-label" for="w4-last-name">单价单位</label>
 													<div class="col-sm-9">
 														<!-- <input type="text" class="form-control" name="last-name" id="w4-last-name" > -->
 														<s:textfield cssClass="form-control" name="authorname2" id="w4-last-name"></s:textfield>

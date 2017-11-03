@@ -169,7 +169,9 @@
     class="text"> 个人信息</span></a></li>
 
 
-
+    <li><a href="${pageContext.request.contextPath }/file_userfilelist.action">
+    <i class="fa fa-user" aria-hidden="true"></i><span
+    class="text"> 个人资产</span></a></li>
     <s:if test="%{#session.loginUser.role==1}">
         <li>
         <a href="${pageContext.request.contextPath }/file_list.action">
@@ -252,7 +254,7 @@
     <li>
 
     <a href="${pageContext.request.contextPath }/message_composeview.action?id=10000000">
-    <i class="fa fa-comment-o" aria-hidden="true"></i><span>意见反馈</span>
+    <i class="fa fa-comment-o" aria-hidden="true"></i><span>报废/异动申请</span>
     </a>
     </li>
     </ul>
@@ -355,7 +357,7 @@
                                     <th>附件名称</th>
                                     <th>资产类型</th>
                                     <th>附件大小</th>
-                                    <th>添加用户</th>
+                                    <th>添加用户id</th>
                                     <th>添加日期</th>
                                     <th>资产状态</th>
                                     <th>操作</th>
@@ -400,27 +402,28 @@
                                             </s:else>
                                         </td>
                                         <td>
-                                            <s:a class="btn btn-success" action="file_detail" namespace="/">
+                                            <s:a class="btn btn-success" action="file_detail" namespace="/" title="查看详情">
                                                 <s:param name="id" value="id"></s:param>
                                                 <i class="fa fa-search-plus "></i>
                                             </s:a>
-                                            <s:a cssClass="btn btn-primary" action="file_download" namespace="/">
+                                            <s:a cssClass="btn btn-primary" action="file_download" namespace="/" title="下载附件">
                                                 <s:param name="id" value="id"></s:param>
                                                 <i class="fa fa-download "></i>
                                             </s:a>
                                             
-											<s:if test="%{#session.loginUser.id==userid}">
-                                            <s:a cssClass="btn btn-info" action="file_editview" namespace="/">
+											<s:if test="%{#session.loginUser.id==userid || #session.loginUser.role==1 }" >
+                                            <s:a cssClass="btn btn-info" action="file_editview" namespace="/" title="修改或者异动">
                                                 <s:param name="id" value="id"></s:param>
                                                 <i class="fa fa-edit "></i>
                                             </s:a>
-
-                                            <s:a cssClass="btn btn-danger" action="file_delete" namespace="/">
-                                                <s:param name="id" value="id"></s:param>
-                                                <i class="fa fa-trash-o "></i>
-                                            </s:a>
                                             </s:if>
-                                        </td>
+                                            <s:if test="%{#session.loginUser.role==1 }">
+                                                    <s:a cssClass="btn btn-danger" action="file_delete" namespace="/" title="报废">
+                                                        <s:param name="id" value="id"></s:param>
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </s:a>
+                                            </s:if>
+                                    </td>
                                     </tr>
                                 </s:iterator>
                                 </tbody>

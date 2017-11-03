@@ -167,25 +167,25 @@
                                         <s:fielderror fieldName="tel" cssClass="fielderrors"></s:fielderror>
                                         <span style="color: red;display: none;" id="telinfo">电话号码输入不正确</span>
                                     </div>
-                                   <%--  <div class="form-group" id="kindlist">
-                                         <label  for="select">部门选择</label>
-                                        <div id="kindlist" class="col-md-9">
-                                        <s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}" cssClass="form-control required" id="select" name="kindid" size="1" headerKey="" headerValue="--选择分类--"></s:select>
-                                        <select id="select" name="kindid" class="form-control required" size="1">
-                                        <option value="0">请选择类别</option>
-                                        <option value="1">Option #1</option>
-                                        <option value="2">Option #2</option>
-                                        <option value="3">Option #3</option>
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
-                                        <!-- 												<input name="name" type="text" class="form-control" placeholder="请输入姓名" id="name"/>
-                                         --> <s:textfield name="job" cssClass="form-control" placeholder="请输入职称"
-                                                          id="job"></s:textfield>
-                                        <s:fielderror fieldName="job" cssClass="fielderrors"></s:fielderror>
-                                    </div> --%>
+                                <div class="form-group" id="kindlist">
+                                <label  for="select">部门选择</label>
+                                <%--<div id="kindlist" class="col-md-9">--%>
+                                <%--<s:select list="#{'1':'资料','2':'图片','3':'视频','4':'音乐'}" cssClass="form-control required" id="select" name="kindid" size="1" headerKey="" headerValue="--选择分类--"></s:select>--%>
+                                <%--<select id="select" name="kindid" class="form-control required" size="1">--%>
+                                <%--<option value="0">请选择类别</option>--%>
+                                <%--<option value="1">Option #1</option>--%>
+                                <%--<option value="2">Option #2</option>--%>
+                                <%--<option value="3">Option #3</option>--%>
+                                <%--</select>--%>
+                                <%--</div>--%>
+                                </div>
+                                <div class="form-group">
+                                <label>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+                                <!-- 												<input name="name" type="text" class="form-control" placeholder="请输入姓名" id="name"/>
+                                --> <s:textfield name="job" cssClass="form-control" placeholder="请输入职称"
+                                                 id="job" value="%{model.job}" ></s:textfield>
+                                <s:fielderror fieldName="job" cssClass="fielderrors"></s:fielderror>
+                                </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6">
